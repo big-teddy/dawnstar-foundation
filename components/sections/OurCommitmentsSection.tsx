@@ -5,7 +5,7 @@ import {
   DollarSign,
   Globe,
   Lock,
-  Seedling,
+  Leaf,
   Target,
   TrendingUp,
   Users,
@@ -100,7 +100,7 @@ export default function OurCommitmentsSection() {
         '한국에서 시작하지만, 우리의 비전은 전 세계 학생들을 위한 것입니다.',
     },
     {
-      icon: Seedling,
+      icon: Leaf,
       emoji: '🌱',
       title: '지속 가능한 모델',
       description: '진정한 변화는 지속 가능할 때 가능합니다.',

@@ -42,14 +42,13 @@ export default function Header() {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/50">
+              <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-md">
                 <Sparkles className="w-6 h-6 text-white" />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity" />
             </motion.div>
             <span
               className={cn(
-                'text-xl font-black bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent transition-opacity',
+                'text-xl font-black text-slate-900 transition-opacity',
                 isScrolled ? 'opacity-100' : 'opacity-100 lg:opacity-0'
               )}
             >
@@ -80,10 +79,10 @@ export default function Header() {
             <Button
               size="sm"
               className={cn(
-                'font-bold transition-all duration-300',
+                'font-semibold transition-all duration-300',
                 isScrolled
-                  ? 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg shadow-indigo-500/30'
-                  : 'bg-white text-slate-900 hover:bg-blue-50 shadow-lg'
+                  ? 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-md'
+                  : 'bg-white text-slate-900 hover:bg-slate-50 shadow-md'
               )}
             >
               문의하기
@@ -135,7 +134,7 @@ export default function Header() {
               </a>
             ))}
             <div className="pt-4">
-              <Button className="w-full font-bold bg-gradient-to-r from-indigo-600 to-purple-600">
+              <Button className="w-full font-semibold bg-indigo-600 hover:bg-indigo-700">
                 문의하기
               </Button>
             </div>

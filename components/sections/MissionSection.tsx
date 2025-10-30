@@ -11,27 +11,27 @@ export default function MissionSection() {
       title: '평등한 교육 기회',
       description:
         '경제적 배경이나 지역에 관계없이 모든 학생이 최고 수준의 교육을 받을 수 있도록 합니다.',
-      gradient: 'from-blue-500 via-blue-600 to-indigo-600',
-      iconColor: 'text-blue-500',
-      glowColor: 'shadow-blue-500/50',
+      gradient: 'from-indigo-500 to-indigo-600',
+      iconColor: 'text-indigo-500',
+      glowColor: 'shadow-indigo-500/20',
     },
     {
       icon: Lightbulb,
       title: 'AI 기반 맞춤 학습',
       description:
         '각 학생의 학습 수준과 속도에 맞춘 개인화된 AI 튜터가 24시간 학습을 지원합니다.',
-      gradient: 'from-purple-500 via-purple-600 to-pink-600',
+      gradient: 'from-purple-500 to-purple-600',
       iconColor: 'text-purple-500',
-      glowColor: 'shadow-purple-500/50',
+      glowColor: 'shadow-purple-500/20',
     },
     {
       icon: Globe,
       title: '지속 가능한 임팩트',
       description:
         '수익의 100%를 교육 기회 확대에 재투자하여 지속 가능한 교육 생태계를 만듭니다.',
-      gradient: 'from-emerald-500 via-green-600 to-teal-600',
+      gradient: 'from-emerald-500 to-emerald-600',
       iconColor: 'text-emerald-500',
-      glowColor: 'shadow-emerald-500/50',
+      glowColor: 'shadow-emerald-500/20',
     },
   ];
 
@@ -106,7 +106,7 @@ export default function MissionSection() {
             >
               {/* Glow Effect */}
               <div
-                className={`absolute -inset-0.5 bg-gradient-to-r ${mission.gradient} rounded-3xl opacity-0 group-hover:opacity-20 blur-2xl transition-all duration-500`}
+                className={`absolute -inset-0.5 bg-gradient-to-r ${mission.gradient} rounded-3xl opacity-0 group-hover:opacity-10 blur-xl transition-all duration-500`}
               />
 
               {/* Card */}

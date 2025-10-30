@@ -1,25 +1,19 @@
-import GetInvolvedSection from '@/components/sections/GetInvolvedSection';
+import FeaturedProjectSection from '@/components/sections/FeaturedProjectSection';
 import HeroSection from '@/components/sections/HeroSection';
-import ManifestoSection from '@/components/sections/ManifestoSection';
-import MissionSection from '@/components/sections/MissionSection';
-import OurCommitmentsSection from '@/components/sections/OurCommitmentsSection';
-import OurStorySection from '@/components/sections/OurStorySection';
-import PartnersSection from '@/components/sections/PartnersSection';
-import VisionSection from '@/components/sections/VisionSection';
-import WhatWeDoSection from '@/components/sections/WhatWeDoSection';
+import HowYouCanHelpSection from '@/components/sections/HowYouCanHelpSection';
+import MissionInActionSection from '@/components/sections/MissionInActionSection';
+import SimpleCTASection from '@/components/sections/SimpleCTASection';
+import WhyWeExistSection from '@/components/sections/WhyWeExistSection';
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <VisionSection />
-      <ManifestoSection />
-      <OurStorySection />
-      <MissionSection />
-      <WhatWeDoSection />
-      <PartnersSection />
-      <OurCommitmentsSection />
-      <GetInvolvedSection />
+      <MissionInActionSection />
+      <FeaturedProjectSection />
+      <WhyWeExistSection />
+      <HowYouCanHelpSection />
+      <SimpleCTASection />
     </>
   );
 }

@@ -8,11 +8,9 @@ import { useEffect, useState } from 'react';
 import Button from '../ui/Button';
 
 const NAVIGATION_ITEMS = [
-  { label: 'Our Vision', href: '#vision' },
-  { label: 'Manifesto', href: '#manifesto' },
-  { label: 'Our Story', href: '#story' },
-  { label: 'What We Do', href: '#what-we-do' },
-  { label: 'Commitments', href: '#commitments' },
+  { label: 'About', href: '/about' },
+  { label: 'Our Work', href: '#featured-project' },
+  { label: 'Get Involved', href: '#how-you-can-help' },
 ];
 
 export default function Header() {

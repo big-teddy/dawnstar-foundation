@@ -1,162 +1,200 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
-import { useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import Button from '../ui/Button';
 
 export default function HeroSection() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end start'],
-  });
+  const ref = useRef<HTMLElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 20 });
+  const smoothMouseY = useSpring(mouseY, { stiffness: 50, damping: 20 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (ref.current) {
+        const rect = ref.current.getBoundingClientRect();
+        const x = (e.clientX - rect.left - rect.width / 2) / 20;
+        const y = (e.clientY - rect.top - rect.height / 2) / 20;
+        mouseX.set(x);
+        mouseY.set(y);
+        setMousePosition({ x: e.clientX, y: e.clientY });
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.2,
+        staggerChildren: 0.08,
+        delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 24 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94] as const,
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   };
 
+  // Floating particles animation
+  const particles = Array.from({ length: 20 }, (_, i) => ({
+    id: i,
+    size: Math.random() * 4 + 2,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    duration: Math.random() * 10 + 20,
+    delay: Math.random() * 5,
+  }));
+
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white"
     >
-      {/* Subtle Background Pattern */}
-      <div className="absolute inset-0">
-        <motion.div
-          style={{ opacity }}
-          className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(99,102,241,0.05),transparent_50%)]"
-        />
-        <motion.div
-          style={{ opacity }}
-          className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(139,92,246,0.05),transparent_50%)]"
-        />
+      {/* Animated Background Grid */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Subtle gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-neutral-50 via-white to-cyan-50/30" />
 
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(to_right,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:64px_64px] opacity-30" />
+        {/* Animated grid with parallax */}
+        <motion.div
+          style={{
+            x: useTransform(smoothMouseX, [-100, 100], [-10, 10]),
+            y: useTransform(smoothMouseY, [-100, 100], [-10, 10]),
+          }}
+          className="absolute inset-0 opacity-[0.03]"
+        >
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.05)_1.5px,transparent_1.5px),linear-gradient(to_right,rgba(0,0,0,0.05)_1.5px,transparent_1.5px)] bg-[size:80px_80px]" />
+        </motion.div>
+
+        {/* Floating particles */}
+        {particles.map((particle) => (
+          <motion.div
+            key={particle.id}
+            className="absolute rounded-full bg-cyan-600/20"
+            style={{
+              width: particle.size,
+              height: particle.size,
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.2, 0.5, 0.2],
+            }}
+            transition={{
+              duration: particle.duration,
+              repeat: Infinity,
+              delay: particle.delay,
+              ease: 'easeInOut',
+            }}
+          />
+        ))}
+
+        {/* Interactive glow effect */}
+        <motion.div
+          className="absolute w-[600px] h-[600px] rounded-full pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, rgba(8, 145, 178, 0.08) 0%, transparent 70%)',
+            x: useTransform(smoothMouseX, [-100, 100], [-50, 50]),
+            y: useTransform(smoothMouseY, [-100, 100], [-50, 50]),
+            left: '50%',
+            top: '50%',
+            translateX: '-50%',
+            translateY: '-50%',
+          }}
+        />
       </div>
 
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40"
+        className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40"
       >
-        <div className="text-center">
-          {/* Badge */}
-          <motion.div variants={itemVariants} className="mb-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700">
-              <Sparkles className="w-4 h-4" />
-              <span className="text-sm font-semibold">AI 기반 교육 혁신</span>
-            </div>
-          </motion.div>
-
+        <div className="text-center space-y-8">
           {/* Main Heading */}
-          <motion.h1
-            variants={itemVariants}
-            className="text-5xl sm:text-6xl lg:text-7xl font-black text-slate-900 mb-8 leading-[1.1] tracking-tight"
-          >
-            모든 학생이
-            <br />
-            <span className="text-indigo-600">
-              최고의 교육을
-            </span>
-            <br />
-            받을 수 있는 세상
-          </motion.h1>
+          <motion.div variants={itemVariants} className="space-y-6">
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black text-neutral-900 leading-[0.95] tracking-tighter">
+              모든 학생에게
+              <br />
+              <span className="relative inline-block">
+                <span className="relative z-10">평등한 교육을</span>
+                <motion.span
+                  className="absolute bottom-2 left-0 w-full h-4 bg-cyan-600/20 -z-0"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.8, duration: 0.8, ease: 'easeOut' }}
+                />
+              </span>
+            </h1>
+          </motion.div>
 
           {/* Sub Heading */}
           <motion.p
             variants={itemVariants}
-            className="text-xl sm:text-2xl text-slate-600 mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl sm:text-2xl text-neutral-600 max-w-2xl mx-auto leading-relaxed font-light"
           >
-            AI 기술로 개인 맞춤형 학습을 제공하는
+            새벽별 파운데이션은 AI 기술로 교육 불평등을 해소하고,
             <br className="hidden sm:block" />
-            한국형 교육 플랫폼을 만듭니다
+            모든 학생이 최고의 학습 경험을 누릴 수 있도록 합니다
           </motion.p>
 
           {/* CTA Buttons */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-20"
+            className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
           >
             <Button
               size="lg"
-              className="group bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg shadow-indigo-600/20 px-8 py-4 text-lg font-semibold"
+              className="group bg-neutral-900 text-white hover:bg-neutral-800 px-8 py-4 text-base font-medium transition-all duration-300"
             >
-              제품 알아보기
+              우리의 미션
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-2 border-slate-300 text-slate-700 hover:bg-slate-50 px-8 py-4 text-lg font-semibold"
+              className="border-2 border-neutral-300 text-neutral-700 hover:bg-neutral-50 hover:border-neutral-400 px-8 py-4 text-base font-medium transition-all duration-300"
             >
-              우리의 미션
+              제품 알아보기
             </Button>
-          </motion.div>
-
-          {/* Stats Cards */}
-          <motion.div
-            variants={containerVariants}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto"
-          >
-            {[
-              { value: '10,000+', label: '베타 사용자' },
-              { value: '24/7', label: 'AI 튜터 학습 지원' },
-              { value: '100%', label: '무료 기본 플랜' },
-            ].map((stat) => (
-              <motion.div
-                key={stat.label}
-                variants={itemVariants}
-                whileHover={{ y: -4 }}
-                className="bg-white rounded-2xl p-8 shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300"
-              >
-                <p className="text-4xl font-bold text-indigo-600 mb-2">
-                  {stat.value}
-                </p>
-                <p className="text-slate-600 font-medium">{stat.label}</p>
-              </motion.div>
-            ))}
           </motion.div>
         </div>
       </motion.div>
 
-      {/* Scroll Indicator */}
+      {/* Minimalist Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
+        transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-12 left-1/2 -translate-x-1/2"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-6 h-10 border-2 border-slate-300 rounded-full flex items-start justify-center p-2"
+          className="flex flex-col items-center gap-2 text-neutral-400"
         >
-          <motion.div className="w-1.5 h-1.5 bg-slate-400 rounded-full" />
+          <div className="text-xs tracking-wider uppercase">Scroll</div>
+          <div className="w-[1px] h-12 bg-gradient-to-b from-neutral-400 to-transparent" />
         </motion.div>
       </motion.div>
     </section>

@@ -1,12 +1,19 @@
 'use client';
 
-import { NAVIGATION_ITEMS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Heart, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Button from '../ui/Button';
+
+const NAVIGATION_ITEMS = [
+  { label: 'Our Vision', href: '#vision' },
+  { label: 'Manifesto', href: '#manifesto' },
+  { label: 'Our Story', href: '#story' },
+  { label: 'What We Do', href: '#what-we-do' },
+  { label: 'Commitments', href: '#commitments' },
+];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,15 +36,15 @@ export default function Header() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
         isScrolled
-          ? 'bg-white/90 backdrop-blur-2xl shadow-sm border-b border-neutral-200/50'
-          : 'bg-white/70 backdrop-blur-md border-b border-neutral-200/30'
+          ? 'bg-white/95 backdrop-blur-2xl shadow-sm border-b border-slate-200/50'
+          : 'bg-white/80 backdrop-blur-md border-b border-slate-200/30'
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center group">
-            <span className="text-lg font-black text-neutral-900">
+            <span className="text-lg font-black text-slate-900 tracking-tight">
               새벽별 파운데이션
             </span>
           </Link>
@@ -48,7 +55,7 @@ export default function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                className="px-4 py-2 text-sm font-medium text-neutral-700 hover:text-neutral-900 rounded-lg transition-colors duration-200"
+                className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900 rounded-lg transition-colors duration-200 hover:bg-slate-50"
               >
                 {item.label}
               </a>
@@ -59,22 +66,23 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-3">
             <Button
               size="sm"
-              className="font-medium bg-neutral-900 hover:bg-neutral-800 text-white"
+              className="font-semibold button-gradient text-white px-6 hover:opacity-90 transition-opacity shadow-lg"
             >
-              문의하기
+              <Heart className="mr-2 w-4 h-4" />
+              후원하기
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-neutral-100 transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors"
             aria-label="메뉴"
           >
             {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-neutral-700" />
+              <X className="w-6 h-6 text-slate-700" />
             ) : (
-              <Menu className="w-6 h-6 text-neutral-700" />
+              <Menu className="w-6 h-6 text-slate-700" />
             )}
           </button>
         </div>
@@ -86,22 +94,23 @@ export default function Header() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="md:hidden bg-white border-t border-neutral-200 shadow-lg"
+          className="md:hidden bg-white border-t border-slate-200 shadow-lg"
         >
           <div className="max-w-7xl mx-auto px-4 py-6 space-y-3">
             {NAVIGATION_ITEMS.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="block px-4 py-3 text-neutral-700 hover:text-neutral-900 hover:bg-neutral-50 rounded-lg font-medium transition-all"
+                className="block px-4 py-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg font-medium transition-all"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.label}
               </a>
             ))}
             <div className="pt-4">
-              <Button className="w-full font-medium bg-neutral-900 hover:bg-neutral-800">
-                문의하기
+              <Button className="w-full font-semibold button-gradient text-white">
+                <Heart className="mr-2 w-4 h-4" />
+                후원하기
               </Button>
             </div>
           </div>

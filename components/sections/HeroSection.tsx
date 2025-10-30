@@ -1,13 +1,12 @@
 'use client';
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { ArrowRight, Sparkles } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 import Button from '../ui/Button';
 
 export default function HeroSection() {
   const ref = useRef<HTMLElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -23,7 +22,6 @@ export default function HeroSection() {
         const y = (e.clientY - rect.top - rect.height / 2) / 20;
         mouseX.set(x);
         mouseY.set(y);
-        setMousePosition({ x: e.clientX, y: e.clientY });
       }
     };
 
@@ -54,56 +52,43 @@ export default function HeroSection() {
     },
   };
 
-  // Floating particles animation
-  const particles = Array.from({ length: 20 }, (_, i) => ({
+  // Floating star particles
+  const stars = Array.from({ length: 30 }, (_, i) => ({
     id: i,
-    size: Math.random() * 4 + 2,
+    size: 2 + Math.random() * 4,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    duration: Math.random() * 10 + 20,
+    duration: 15 + Math.random() * 10,
     delay: Math.random() * 5,
   }));
 
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient"
     >
-      {/* Animated Background Grid */}
+      {/* Animated Background with Stars */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Subtle gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-neutral-50 via-white to-cyan-50/30" />
-
-        {/* Animated grid with parallax */}
-        <motion.div
-          style={{
-            x: useTransform(smoothMouseX, [-100, 100], [-10, 10]),
-            y: useTransform(smoothMouseY, [-100, 100], [-10, 10]),
-          }}
-          className="absolute inset-0 opacity-[0.03]"
-        >
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.05)_1.5px,transparent_1.5px),linear-gradient(to_right,rgba(0,0,0,0.05)_1.5px,transparent_1.5px)] bg-[size:80px_80px]" />
-        </motion.div>
-
-        {/* Floating particles */}
-        {particles.map((particle) => (
+        {/* Floating stars */}
+        {stars.map((star) => (
           <motion.div
-            key={particle.id}
-            className="absolute rounded-full bg-cyan-600/20"
+            key={star.id}
+            className="absolute rounded-full bg-white/60"
             style={{
-              width: particle.size,
-              height: particle.size,
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
+              width: star.size,
+              height: star.size,
+              left: `${star.x}%`,
+              top: `${star.y}%`,
             }}
             animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 0.5, 0.2],
+              y: [0, -20, 0],
+              opacity: [0.3, 1, 0.3],
+              scale: [1, 1.2, 1],
             }}
             transition={{
-              duration: particle.duration,
+              duration: star.duration,
               repeat: Infinity,
-              delay: particle.delay,
+              delay: star.delay,
               ease: 'easeInOut',
             }}
           />
@@ -111,9 +96,10 @@ export default function HeroSection() {
 
         {/* Interactive glow effect */}
         <motion.div
-          className="absolute w-[600px] h-[600px] rounded-full pointer-events-none"
+          className="absolute w-[800px] h-[800px] rounded-full pointer-events-none"
           style={{
-            background: 'radial-gradient(circle, rgba(8, 145, 178, 0.08) 0%, transparent 70%)',
+            background:
+              'radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%)',
             x: useTransform(smoothMouseX, [-100, 100], [-50, 50]),
             y: useTransform(smoothMouseY, [-100, 100], [-50, 50]),
             left: '50%',
@@ -133,29 +119,25 @@ export default function HeroSection() {
         <div className="text-center space-y-8">
           {/* Main Heading */}
           <motion.div variants={itemVariants} className="space-y-6">
-            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black text-neutral-900 leading-[0.95] tracking-tighter">
-              모든 학생에게
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black text-white leading-[0.95] tracking-tighter">
+              모든 아이의 잠재력이
               <br />
-              <span className="relative inline-block">
-                <span className="relative z-10">평등한 교육을</span>
-                <motion.span
-                  className="absolute bottom-2 left-0 w-full h-4 bg-cyan-600/20 -z-0"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 0.8, duration: 0.8, ease: 'easeOut' }}
-                />
-              </span>
+              빛나는 세상을 만듭니다
             </h1>
           </motion.div>
 
           {/* Sub Heading */}
           <motion.p
             variants={itemVariants}
-            className="text-xl sm:text-2xl text-neutral-600 max-w-2xl mx-auto leading-relaxed font-light"
+            className="text-xl sm:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed font-light"
           >
-            새벽별 파운데이션은 AI 기술로 교육 불평등을 해소하고,
+            새벽별 파운데이션은 AI 기술을 통해
             <br className="hidden sm:block" />
-            모든 학생이 최고의 학습 경험을 누릴 수 있도록 합니다
+            경제적 배경이나 환경에 관계없이
+            <br className="hidden sm:block" />
+            모든 학생이 자신만의 속도로 배우고 성장할 수 있는
+            <br className="hidden sm:block" />
+            교육 환경을 만들어갑니다
           </motion.p>
 
           {/* CTA Buttons */}
@@ -165,23 +147,24 @@ export default function HeroSection() {
           >
             <Button
               size="lg"
-              className="group bg-neutral-900 text-white hover:bg-neutral-800 px-8 py-4 text-base font-medium transition-all duration-300"
+              className="group bg-white text-blue-900 hover:bg-white/90 px-8 py-4 text-base font-semibold transition-all duration-300 shadow-xl"
             >
-              우리의 미션
+              우리의 미션 알아보기
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-2 border-neutral-300 text-neutral-700 hover:bg-neutral-50 hover:border-neutral-400 px-8 py-4 text-base font-medium transition-all duration-300"
+              className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-8 py-4 text-base font-semibold transition-all duration-300 backdrop-blur-sm"
             >
-              제품 알아보기
+              <Sparkles className="mr-2 w-5 h-5" />
+              샛별 프로젝트 보기
             </Button>
           </motion.div>
         </div>
       </motion.div>
 
-      {/* Minimalist Scroll Indicator */}
+      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -191,10 +174,12 @@ export default function HeroSection() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="flex flex-col items-center gap-2 text-neutral-400"
+          className="flex flex-col items-center gap-2 text-white/60"
         >
-          <div className="text-xs tracking-wider uppercase">Scroll</div>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-neutral-400 to-transparent" />
+          <div className="text-xs tracking-wider uppercase font-medium">
+            Scroll
+          </div>
+          <div className="w-[1px] h-12 bg-gradient-to-b from-white/60 to-transparent" />
         </motion.div>
       </motion.div>
     </section>

@@ -50,6 +50,7 @@ export const PRICING_PLANS = [
   {
     name: '무료 플랜',
     price: '₩0',
+    period: undefined,
     description: '평생 무료',
     features: [
       '기본 AI 튜터 이용',
@@ -74,6 +75,7 @@ export const PRICING_PLANS = [
   {
     name: '학교/기관',
     price: '문의',
+    period: undefined,
     description: '',
     features: [
       '관리자 대시보드',

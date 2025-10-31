@@ -2,20 +2,43 @@
 
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
-import { Heart, Menu, X } from 'lucide-react';
+import { ChevronDown, Heart, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Button from '../ui/Button';
 
 const NAVIGATION_ITEMS = [
-  { label: 'About', href: '/about' },
-  { label: 'Our Work', href: '#featured-project' },
-  { label: 'Get Involved', href: '#how-you-can-help' },
+  {
+    label: '소개',
+    href: '/about',
+    dropdown: [
+      { label: '미션과 비전', href: '/about/mission' },
+      { label: '우리의 이야기', href: '/about/story' },
+      { label: '새벽별 선언문', href: '/about/manifesto' },
+      { label: '우리의 약속', href: '/about/commitments' },
+    ],
+  },
+  {
+    label: '우리의 활동',
+    href: '/work/saetbyeol',
+    dropdown: [
+      { label: '샛별 (AI 튜터)', href: '/work/saetbyeol' },
+    ],
+  },
+  {
+    label: '함께하기',
+    href: '/get-involved',
+    dropdown: [
+      { label: '후원하기', href: '/get-involved#support' },
+      { label: '파트너십', href: '/get-involved#partner' },
+    ],
+  },
 ];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,13 +73,43 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
             {NAVIGATION_ITEMS.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900 rounded-lg transition-colors duration-200 hover:bg-slate-50"
+              <div
+                key={item.label}
+                className="relative"
+                onMouseEnter={() => setOpenDropdown(item.label)}
+                onMouseLeave={() => setOpenDropdown(null)}
               >
-                {item.label}
-              </a>
+                <Link
+                  href={item.href}
+                  className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900 rounded-lg transition-colors duration-200 hover:bg-slate-50 flex items-center gap-1"
+                >
+                  {item.label}
+                  {item.dropdown && (
+                    <ChevronDown className="w-4 h-4" />
+                  )}
+                </Link>
+
+                {/* Dropdown Menu */}
+                {item.dropdown && openDropdown === item.label && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-lg border border-slate-200 py-2 z-50"
+                  >
+                    {item.dropdown.map((dropdownItem) => (
+                      <Link
+                        key={dropdownItem.href}
+                        href={dropdownItem.href}
+                        className="block px-4 py-2 text-sm text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-colors"
+                      >
+                        {dropdownItem.label}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </div>
             ))}
           </nav>
 
@@ -64,7 +117,7 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-3">
             <Button
               size="sm"
-              className="font-semibold button-gradient text-white px-6 hover:opacity-90 transition-opacity shadow-lg"
+              className="font-semibold bg-slate-900 text-white px-6 hover:bg-slate-800 transition-colors"
             >
               <Heart className="mr-2 w-4 h-4" />
               후원하기
@@ -106,7 +159,7 @@ export default function Header() {
               </a>
             ))}
             <div className="pt-4">
-              <Button className="w-full font-semibold button-gradient text-white">
+              <Button className="w-full font-semibold bg-slate-900 text-white hover:bg-slate-800">
                 <Heart className="mr-2 w-4 h-4" />
                 후원하기
               </Button>

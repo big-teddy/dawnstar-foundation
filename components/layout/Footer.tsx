@@ -3,20 +3,19 @@ import { Github, Linkedin, Twitter } from 'lucide-react';
 
 export default function Footer() {
   const aboutLinks = [
-    { label: 'Our Mission & Vision', href: '#vision' },
-    { label: 'Our Story', href: '#story' },
-    { label: 'The DawnStar Manifesto', href: '#manifesto' },
-    { label: 'Our Commitments', href: '#commitments' },
+    { label: '미션과 비전', href: '/about/mission' },
+    { label: '우리의 이야기', href: '/about/story' },
+    { label: '새벽별 선언문', href: '/about/manifesto' },
+    { label: '우리의 약속', href: '/about/commitments' },
   ];
 
   const workLinks = [
-    { label: 'What We Do', href: '#what-we-do' },
-    { label: 'Saetbyeol (AI Tutor)', href: '#what-we-do' },
+    { label: '샛별 (AI 튜터)', href: '/work/saetbyeol' },
   ];
 
   const involvedLinks = [
-    { label: 'Support Us', href: '#get-involved' },
-    { label: 'Partner With Us', href: '#get-involved' },
+    { label: '후원하기', href: '/get-involved#support' },
+    { label: '파트너십', href: '/get-involved#partner' },
   ];
 
   return (
@@ -64,7 +63,7 @@ export default function Footer() {
 
           {/* About Links */}
           <div>
-            <h3 className="text-white font-bold mb-4">About</h3>
+            <h3 className="text-white font-bold mb-4">소개</h3>
             <ul className="space-y-2">
               {aboutLinks.map((item) => (
                 <li key={item.href}>
@@ -81,10 +80,10 @@ export default function Footer() {
 
           {/* Our Work Links */}
           <div>
-            <h3 className="text-white font-bold mb-4">Our Work</h3>
+            <h3 className="text-white font-bold mb-4">우리의 활동</h3>
             <ul className="space-y-2">
-              {workLinks.map((item) => (
-                <li key={item.href}>
+              {workLinks.map((item, index) => (
+                <li key={`${item.href}-${index}`}>
                   <a
                     href={item.href}
                     className="text-slate-400 hover:text-white transition-colors text-sm"
@@ -98,10 +97,10 @@ export default function Footer() {
 
           {/* Get Involved Links */}
           <div>
-            <h3 className="text-white font-bold mb-4">Get Involved</h3>
+            <h3 className="text-white font-bold mb-4">함께하기</h3>
             <ul className="space-y-2">
-              {involvedLinks.map((item) => (
-                <li key={item.href}>
+              {involvedLinks.map((item, index) => (
+                <li key={`${item.href}-${index}`}>
                   <a
                     href={item.href}
                     className="text-slate-400 hover:text-white transition-colors text-sm"

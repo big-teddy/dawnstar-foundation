@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import Button from '../ui/Button';
 
@@ -65,50 +65,8 @@ export default function HeroSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-900"
     >
-      {/* Animated Background with Stars */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Floating stars */}
-        {stars.map((star) => (
-          <motion.div
-            key={star.id}
-            className="absolute rounded-full bg-white/60"
-            style={{
-              width: star.size,
-              height: star.size,
-              left: `${star.x}%`,
-              top: `${star.y}%`,
-            }}
-            animate={{
-              y: [0, -20, 0],
-              opacity: [0.3, 1, 0.3],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: star.duration,
-              repeat: Infinity,
-              delay: star.delay,
-              ease: 'easeInOut',
-            }}
-          />
-        ))}
-
-        {/* Interactive glow effect */}
-        <motion.div
-          className="absolute w-[800px] h-[800px] rounded-full pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%)',
-            x: useTransform(smoothMouseX, [-100, 100], [-50, 50]),
-            y: useTransform(smoothMouseY, [-100, 100], [-50, 50]),
-            left: '50%',
-            top: '50%',
-            translateX: '-50%',
-            translateY: '-50%',
-          }}
-        />
-      </div>
 
       <motion.div
         variants={containerVariants}
@@ -143,22 +101,14 @@ export default function HeroSection() {
           {/* CTA Buttons */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
+            className="flex justify-center pt-4"
           >
             <Button
               size="lg"
-              className="group bg-white text-blue-900 hover:bg-white/90 px-8 py-4 text-base font-semibold transition-all duration-300 shadow-xl"
+              className="group bg-white text-slate-900 hover:bg-slate-50 px-8 py-4 text-base font-semibold transition-all duration-300 shadow-lg"
             >
               우리의 미션 알아보기
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-8 py-4 text-base font-semibold transition-all duration-300 backdrop-blur-sm"
-            >
-              <Sparkles className="mr-2 w-5 h-5" />
-              샛별 프로젝트 보기
             </Button>
           </motion.div>
         </div>

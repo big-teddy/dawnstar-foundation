@@ -68,18 +68,18 @@ export default function HowYouCanHelpSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 hover:border-purple-300"
+                className="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-200 hover:border-slate-300"
               >
                 {/* Badge */}
                 {way.badge && (
-                  <div className="absolute top-6 right-6 bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-semibold">
+                  <div className="absolute top-6 right-6 bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-semibold">
                     {way.badge}
                   </div>
                 )}
 
                 {/* Icon */}
                 <div className="mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <way.icon className="w-8 h-8 text-white" />
                   </div>
                 </div>
@@ -95,7 +95,7 @@ export default function HowYouCanHelpSection() {
                 {/* CTA */}
                 <Button
                   variant="outline"
-                  className="w-full border-2 border-slate-200 text-slate-700 hover:border-purple-600 hover:text-purple-600 hover:bg-purple-50 transition-all group-hover:translate-x-1"
+                  className="w-full border-2 border-slate-200 text-slate-700 hover:border-slate-900 hover:text-slate-900 hover:bg-slate-50 transition-all group-hover:translate-x-1"
                 >
                   {way.cta}
                   <ArrowRight className="ml-2 w-5 h-5" />

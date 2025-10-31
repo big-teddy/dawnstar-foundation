@@ -68,10 +68,10 @@ export default function MissionInActionSection() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group"
               >
-                <div className="relative bg-white rounded-2xl p-8 border border-slate-200 hover:border-purple-300 hover:shadow-xl transition-all duration-300">
+                <div className="relative bg-white rounded-2xl p-8 border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300">
                   {/* Icon */}
                   <div className="mb-6">
-                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <action.icon className="w-8 h-8 text-white" />
                     </div>
                   </div>
@@ -81,7 +81,7 @@ export default function MissionInActionSection() {
                     <h3 className="text-lg font-bold text-slate-900 mb-1">
                       {action.title}
                     </h3>
-                    <p className="text-sm font-medium text-purple-600 mb-3">
+                    <p className="text-sm font-medium text-slate-600 mb-3">
                       {action.subtitle}
                     </p>
                     <p className="text-slate-600 leading-relaxed">

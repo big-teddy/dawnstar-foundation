@@ -71,9 +71,9 @@ export default function SaetbyeolPage() {
           </p>
           <div className="prose prose-lg max-w-none text-slate-600">
             <p>
-              샛별은 Khan Academy의 Khanmigo에서 영감을 받아, 한국 교육
-              환경에 맞게 재설계된 AI 학습 도구입니다. 하지만 단순히 답을
-              알려주는 것이 아닙니다.
+              샛별은 한국 교육 현장의 실제 니즈를 반영하여 처음부터 설계된
+              AI 학습 도구입니다. 단순히 답을 알려주는 것이 아니라,
+              학생이 스스로 생각하고 문제를 해결할 수 있도록 돕습니다.
             </p>
           </div>
         </div>

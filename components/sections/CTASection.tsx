@@ -10,7 +10,7 @@ export default function CTASection() {
     <section className="py-24 lg:py-32 bg-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <div className="relative overflow-hidden rounded-3xl bg-neutral-900 p-12 lg:p-16">
+          <div className="relative overflow-hidden rounded-3xl bg-slate-900 p-12 lg:p-16">
             {/* Background pattern */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px]" />
@@ -49,7 +49,7 @@ export default function CTASection() {
                 <br />
                 더 나은 교육의 미래
               </h2>
-              <p className="text-lg text-neutral-300 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+              <p className="text-lg text-slate-300 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
                 새벽별 파운데이션과 함께 모든 학생에게
                 <br className="hidden sm:block" />
                 평등한 교육 기회를 제공하는 데 동참해주세요
@@ -58,7 +58,7 @@ export default function CTASection() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   size="lg"
-                  className="bg-white text-neutral-900 hover:bg-neutral-100 px-8 py-4"
+                  className="bg-white text-slate-900 hover:bg-slate-100 px-8 py-4"
                 >
                   후원하기
                   <ArrowRight className="ml-2 w-5 h-5" />

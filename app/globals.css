@@ -57,8 +57,15 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  letter-spacing: -0.011em;
+  letter-spacing: -0.005em;
   text-rendering: optimizeLegibility;
+  word-break: keep-all;
+  word-wrap: break-word;
+}
+
+/* Korean text specific */
+h1, h2, h3, h4, h5, h6 {
+  word-break: keep-all;
 }
 
 /* Premium Animations */

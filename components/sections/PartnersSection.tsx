@@ -29,17 +29,17 @@ export default function PartnersSection() {
   ];
 
   return (
-    <section id="partners" className="py-24 lg:py-32 bg-neutral-50/50">
+    <section id="partners" className="py-24 lg:py-32 bg-slate-50/50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-16">
-            <span className="text-xs font-semibold text-neutral-500 tracking-[0.2em] uppercase block mb-4">
+            <span className="text-xs font-semibold text-slate-500 tracking-[0.2em] uppercase block mb-4">
               Partnership
             </span>
-            <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-4 tracking-tight">
+            <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
               함께하는 파트너
             </h2>
-            <p className="text-lg text-neutral-600 font-light">
+            <p className="text-lg text-slate-600 font-light">
               교육의 미래를 함께 만들어갈 파트너를 찾습니다
             </p>
           </div>
@@ -49,16 +49,16 @@ export default function PartnersSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
           {partners.map((partner, index) => (
             <ScrollReveal key={partner.title} delay={index * 0.2}>
-              <div className="bg-white border border-neutral-200 rounded-xl p-8 hover:border-neutral-300 transition-all duration-300">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-neutral-900 rounded-xl mb-6">
+              <div className="bg-white border border-slate-200 rounded-xl p-8 hover:border-slate-300 transition-all duration-300">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-slate-900 rounded-xl mb-6">
                   <partner.icon className="w-6 h-6 text-white" strokeWidth={2} />
                 </div>
 
-                <h3 className="text-2xl font-bold text-neutral-900 mb-4">
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">
                   {partner.title}
                 </h3>
 
-                <p className="text-neutral-600 mb-6 leading-relaxed">
+                <p className="text-slate-600 mb-6 leading-relaxed">
                   {partner.description}
                 </p>
 
@@ -66,12 +66,12 @@ export default function PartnersSection() {
                   {partner.benefits.map((benefit) => (
                     <div key={benefit} className="flex items-center gap-3">
                       <Check className="w-5 h-5 text-cyan-600 flex-shrink-0" strokeWidth={2.5} />
-                      <span className="text-neutral-700 text-sm">{benefit}</span>
+                      <span className="text-slate-700 text-sm">{benefit}</span>
                     </div>
                   ))}
                 </div>
 
-                <Button className="w-full bg-neutral-900 text-white hover:bg-neutral-800">
+                <Button className="w-full bg-slate-900 text-white hover:bg-slate-800">
                   {partner.title === '학교 및 교육기관'
                     ? '파트너십 문의'
                     : '후원 문의'}
@@ -84,16 +84,16 @@ export default function PartnersSection() {
 
         {/* Partner Logos */}
         <ScrollReveal>
-          <div className="bg-white rounded-xl p-8 border border-neutral-200">
-            <p className="text-center text-neutral-500 mb-8 text-sm font-medium tracking-wide">함께하는 파트너</p>
+          <div className="bg-white rounded-xl p-8 border border-slate-200">
+            <p className="text-center text-slate-500 mb-8 text-sm font-medium tracking-wide">함께하는 파트너</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {['Partner 1', 'Partner 2', 'Partner 3', 'Partner 4'].map(
                 (partner) => (
                   <div
                     key={partner}
-                    className="bg-neutral-50 rounded-lg p-6 flex items-center justify-center border border-neutral-200 opacity-40 hover:opacity-70 transition-opacity"
+                    className="bg-slate-50 rounded-lg p-6 flex items-center justify-center border border-slate-200 opacity-40 hover:opacity-70 transition-opacity"
                   >
-                    <span className="text-neutral-400 font-medium text-sm">{partner}</span>
+                    <span className="text-slate-400 font-medium text-sm">{partner}</span>
                   </div>
                 )
               )}

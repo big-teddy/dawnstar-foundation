@@ -49,7 +49,7 @@ export default function MissionSection() {
   };
 
   return (
-    <section id="mission" className="relative py-24 lg:py-32 bg-neutral-50/50 overflow-hidden">
+    <section id="mission" className="relative py-24 lg:py-32 bg-slate-50/50 overflow-hidden">
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-20">
@@ -60,14 +60,14 @@ export default function MissionSection() {
               transition={{ duration: 0.6 }}
               className="inline-block mb-6"
             >
-              <span className="text-xs font-semibold text-neutral-500 tracking-[0.2em] uppercase">
+              <span className="text-xs font-semibold text-slate-500 tracking-[0.2em] uppercase">
                 Our Mission
               </span>
             </motion.div>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-neutral-900 mb-6 tracking-tight leading-tight">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">
               우리의 미션
             </h2>
-            <p className="text-lg sm:text-xl text-neutral-600 max-w-2xl mx-auto leading-relaxed font-light">
+            <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-light">
               교육 불평등을 해소하고, 모든 학생에게 세계 최고 수준의
               <br className="hidden sm:block" />
               개인 맞춤형 학습 경험을 제공합니다
@@ -89,19 +89,19 @@ export default function MissionSection() {
               className="group relative"
             >
               {/* Card */}
-              <div className="relative bg-white rounded-2xl p-8 lg:p-10 border border-neutral-200 hover:border-neutral-300 transition-all duration-300 h-full">
+              <div className="relative bg-white rounded-2xl p-8 lg:p-10 border border-slate-200 hover:border-slate-300 transition-all duration-300 h-full">
                 {/* Icon Container */}
                 <div className="mb-6">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-neutral-900 group-hover:scale-105 transition-transform duration-300">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-slate-900 group-hover:scale-105 transition-transform duration-300">
                     <mission.icon className="w-6 h-6 text-white" strokeWidth={2} />
                   </div>
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl lg:text-2xl font-bold text-neutral-900 mb-4 tracking-tight">
+                <h3 className="text-xl lg:text-2xl font-bold text-slate-900 mb-4 tracking-tight">
                   {mission.title}
                 </h3>
-                <p className="text-neutral-600 leading-relaxed text-base">
+                <p className="text-slate-600 leading-relaxed text-base">
                   {mission.description}
                 </p>
               </div>

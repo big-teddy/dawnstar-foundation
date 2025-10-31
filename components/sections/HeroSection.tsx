@@ -353,7 +353,7 @@ export default function HeroSection() {
         <div className="text-center space-y-8">
           {/* Main Heading */}
           <motion.div variants={itemVariants} className="space-y-6">
-            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black text-white leading-[0.95] tracking-tighter">
+            <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black text-white leading-[1.1] tracking-tight">
               모든 아이의 잠재력이
               <br />
               빛나는 세상을 만듭니다

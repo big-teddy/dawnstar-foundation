@@ -56,17 +56,17 @@ export default function AboutSection() {
             className="space-y-8"
           >
             <div>
-              <span className="text-xs font-semibold text-neutral-500 tracking-[0.2em] uppercase">
+              <span className="text-xs font-semibold text-slate-500 tracking-[0.2em] uppercase">
                 About Us
               </span>
-              <h2 className="text-4xl sm:text-5xl font-black text-neutral-900 mt-4 mb-6 tracking-tight leading-tight">
+              <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mt-4 mb-6 tracking-tight leading-tight">
                 교육의 미래를
                 <br />
                 함께 만들어갑니다
               </h2>
             </div>
 
-            <div className="space-y-6 text-neutral-600 leading-relaxed">
+            <div className="space-y-6 text-slate-600 leading-relaxed">
               <p className="text-lg">
                 새벽별 파운데이션은 교육 불평등이라는 사회적 문제를 해결하기 위해 설립된 비영리 단체입니다.
               </p>
@@ -83,12 +83,12 @@ export default function AboutSection() {
             {/* Stats */}
             <div className="grid grid-cols-2 gap-6 pt-4">
               <div className="space-y-2">
-                <div className="text-3xl font-bold text-neutral-900">2024</div>
-                <div className="text-sm text-neutral-600">설립 연도</div>
+                <div className="text-3xl font-bold text-slate-900">2024</div>
+                <div className="text-sm text-slate-600">설립 연도</div>
               </div>
               <div className="space-y-2">
-                <div className="text-3xl font-bold text-neutral-900">100%</div>
-                <div className="text-sm text-neutral-600">재투자 비율</div>
+                <div className="text-3xl font-bold text-slate-900">100%</div>
+                <div className="text-sm text-slate-600">재투자 비율</div>
               </div>
             </div>
           </motion.div>
@@ -102,8 +102,8 @@ export default function AboutSection() {
             className="space-y-4"
           >
             <div className="mb-8">
-              <h3 className="text-2xl font-bold text-neutral-900 mb-2">우리의 가치</h3>
-              <p className="text-neutral-600">
+              <h3 className="text-2xl font-bold text-slate-900 mb-2">우리의 가치</h3>
+              <p className="text-slate-600">
                 이 가치들이 우리의 모든 결정과 행동의 기준이 됩니다
               </p>
             </div>
@@ -121,17 +121,17 @@ export default function AboutSection() {
                     ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
                   }}
                   whileHover={{ y: -4 }}
-                  className="group relative bg-neutral-50 rounded-xl p-6 border border-neutral-200 hover:border-neutral-300 transition-all duration-300"
+                  className="group relative bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-slate-300 transition-all duration-300"
                 >
                   <div className="flex flex-col gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-neutral-900 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-10 h-10 rounded-lg bg-slate-900 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <value.icon className="w-5 h-5 text-white" strokeWidth={2} />
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold text-neutral-900 mb-1">
+                      <h4 className="text-lg font-bold text-slate-900 mb-1">
                         {value.title}
                       </h4>
-                      <p className="text-sm text-neutral-600 leading-relaxed">
+                      <p className="text-sm text-slate-600 leading-relaxed">
                         {value.description}
                       </p>
                     </div>

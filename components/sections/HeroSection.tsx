@@ -8,7 +8,7 @@ import {
   useTransform,
 } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import Button from '../ui/Button';
 import CursorGlow from '../effects/CursorGlow';
 
@@ -57,9 +57,7 @@ export default function HeroSection() {
   const sunY = useTransform(scrollYProgress, [0, 0.4, 1], ['120%', '120%', '30%']);
   const sunScale = useTransform(scrollYProgress, [0.4, 0.7, 1], [0.8, 1, 1.2]);
 
-  // Why We Exist content fades in
-  const whyWeExistY = useTransform(scrollYProgress, [0.5, 0.8], ['30%', '0%']);
-  const whyWeExistOpacity = useTransform(scrollYProgress, [0.5, 0.7, 0.9], [0, 0.5, 1]);
+  // Removed Why We Exist from hero - it's now a separate section
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -99,44 +97,40 @@ export default function HeroSection() {
     },
   };
 
-  // Enhanced star system with multiple layers
-  const backgroundStars = Array.from({ length: 150 }, (_, i) => ({
+  // Optimized Starlight system - useMemo to prevent hydration mismatch
+  const backgroundStars = useMemo(() => Array.from({ length: 100 }, (_, i) => ({
     id: `bg-${i}`,
-    size: 1 + Math.random() * 2,
+    size: 1 + Math.random() * 1.5,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    duration: 20 + Math.random() * 15,
-    delay: Math.random() * 10,
+    duration: 3 + Math.random() * 4,
+    delay: Math.random() * 8,
     opacity: 0.2 + Math.random() * 0.3,
-  }));
+    hasCross: false,
+  })), []);
 
-  const midgroundStars = Array.from({ length: 80 }, (_, i) => ({
+  const midgroundStars = useMemo(() => Array.from({ length: 50 }, (_, i) => ({
     id: `mid-${i}`,
-    size: 2 + Math.random() * 3,
+    size: 1.5 + Math.random() * 2,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    duration: 10 + Math.random() * 8,
-    delay: Math.random() * 5,
+    duration: 2 + Math.random() * 3,
+    delay: Math.random() * 6,
     opacity: 0.4 + Math.random() * 0.4,
-  }));
+    hasCross: Math.random() > 0.85,
+  })), []);
 
-  const foregroundStars = Array.from({ length: 40 }, (_, i) => ({
+  const foregroundStars = useMemo(() => Array.from({ length: 30 }, (_, i) => ({
     id: `fg-${i}`,
-    size: 3 + Math.random() * 4,
+    size: 2 + Math.random() * 2.5,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    duration: 5 + Math.random() * 5,
-    delay: Math.random() * 3,
+    duration: 1.5 + Math.random() * 2.5,
+    delay: Math.random() * 4,
     opacity: 0.6 + Math.random() * 0.4,
-  }));
+    hasCross: Math.random() > 0.5,
+  })), []);
 
-  // Shooting stars
-  const shootingStars = Array.from({ length: 3 }, (_, i) => ({
-    id: `shooting-${i}`,
-    startX: Math.random() * 100,
-    startY: Math.random() * 30,
-    delay: i * 8 + Math.random() * 5,
-  }));
 
   return (
     <motion.section
@@ -179,8 +173,8 @@ export default function HeroSection() {
         <div className="absolute inset-0 w-32 h-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-radial from-yellow-200 via-amber-300 to-orange-400 blur-xl" />
       </motion.div>
 
-      {/* Multi-layer star system */}
-      {/* Background stars - smallest and slowest */}
+      {/* Optimized star system - Rolls-Royce Starlight inspired */}
+      {/* Background stars - simple and performant */}
       <motion.div
         className="absolute inset-0"
         style={{ y: backgroundY, opacity: starsOpacity }}
@@ -188,16 +182,17 @@ export default function HeroSection() {
         {backgroundStars.map((star) => (
           <motion.div
             key={star.id}
-            className="absolute bg-white rounded-full"
+            className="absolute rounded-full bg-white"
             style={{
               left: `${star.x}%`,
               top: `${star.y}%`,
               width: star.size,
               height: star.size,
+              boxShadow: `0 0 ${star.size * 2}px rgba(255, 255, 255, 0.6)`,
             }}
             animate={{
               opacity: [star.opacity * 0.5, star.opacity, star.opacity * 0.5],
-              scale: [1, 1.1, 1],
+              scale: [1, 1.2, 1],
             }}
             transition={{
               duration: star.duration,
@@ -209,94 +204,143 @@ export default function HeroSection() {
         ))}
       </motion.div>
 
-      {/* Midground stars - medium size and speed */}
+      {/* Midground stars - enhanced glow */}
       <motion.div
         className="absolute inset-0"
         style={{ y: midgroundY, opacity: starsOpacity }}
       >
         {midgroundStars.map((star) => (
-          <motion.div
+          <div
             key={star.id}
-            className="absolute bg-white rounded-full shadow-lg shadow-white/50"
+            className="absolute"
             style={{
               left: `${star.x}%`,
               top: `${star.y}%`,
-              width: star.size,
-              height: star.size,
             }}
-            animate={{
-              opacity: [star.opacity * 0.6, star.opacity, star.opacity * 0.6],
-              scale: [1, 1.3, 1],
-            }}
-            transition={{
-              duration: star.duration,
-              delay: star.delay,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          />
+          >
+            <motion.div
+              className="relative"
+              animate={{
+                opacity: [star.opacity * 0.6, star.opacity, star.opacity * 0.6],
+                scale: [1, 1.3, 1],
+              }}
+              transition={{
+                duration: star.duration,
+                delay: star.delay,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            >
+              {/* Core with glow */}
+              <div
+                className="rounded-full bg-white"
+                style={{
+                  width: star.size,
+                  height: star.size,
+                  boxShadow: `0 0 ${star.size * 3}px rgba(255, 255, 255, 0.8)`,
+                }}
+              />
+              {/* Simple cross for select stars */}
+              {star.hasCross && (
+                <>
+                  <div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-transparent via-white/60 to-transparent"
+                    style={{
+                      width: star.size * 8,
+                      height: 0.5,
+                    }}
+                  />
+                  <div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-transparent via-white/60 to-transparent"
+                    style={{
+                      width: 0.5,
+                      height: star.size * 8,
+                    }}
+                  />
+                </>
+              )}
+            </motion.div>
+          </div>
         ))}
       </motion.div>
 
-      {/* Foreground stars - largest and brightest */}
+      {/* Foreground stars - premium Starlight effect */}
       <motion.div
         className="absolute inset-0"
         style={{ y: foregroundY, opacity: starsOpacity }}
       >
         {foregroundStars.map((star) => (
-          <motion.div
+          <div
             key={star.id}
-            className="absolute bg-white rounded-full shadow-xl shadow-white/70"
+            className="absolute"
             style={{
               left: `${star.x}%`,
               top: `${star.y}%`,
-              width: star.size,
-              height: star.size,
             }}
-            animate={{
-              opacity: [star.opacity * 0.7, star.opacity, star.opacity * 0.7],
-              scale: [1, 1.5, 1],
-              boxShadow: [
-                '0 0 10px rgba(255,255,255,0.5)',
-                '0 0 20px rgba(255,255,255,0.8)',
-                '0 0 10px rgba(255,255,255,0.5)',
-              ],
-            }}
-            transition={{
-              duration: star.duration,
-              delay: star.delay,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          />
+          >
+            <motion.div
+              className="relative"
+              animate={{
+                opacity: [star.opacity * 0.7, star.opacity, star.opacity * 0.7],
+                scale: [1, 1.4, 1],
+              }}
+              transition={{
+                duration: star.duration,
+                delay: star.delay,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            >
+              {/* Bright core with multi-layer glow */}
+              <div
+                className="rounded-full bg-white"
+                style={{
+                  width: star.size,
+                  height: star.size,
+                  boxShadow: `0 0 ${star.size * 4}px rgba(255, 255, 255, 1), 0 0 ${star.size * 2}px rgba(255, 255, 255, 0.8)`,
+                }}
+              />
+              {/* Premium cross/lens flare */}
+              {star.hasCross && (
+                <>
+                  {/* Horizontal ray */}
+                  <div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-transparent via-white/70 to-transparent"
+                    style={{
+                      width: star.size * 12,
+                      height: 0.8,
+                    }}
+                  />
+                  {/* Vertical ray */}
+                  <div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-transparent via-white/70 to-transparent"
+                    style={{
+                      width: 0.8,
+                      height: star.size * 12,
+                    }}
+                  />
+                  {/* Diagonal rays */}
+                  <div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent rotate-45"
+                    style={{
+                      width: star.size * 8,
+                      height: 0.5,
+                    }}
+                  />
+                  <div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent -rotate-45"
+                    style={{
+                      width: star.size * 8,
+                      height: 0.5,
+                    }}
+                  />
+                </>
+              )}
+            </motion.div>
+          </div>
         ))}
       </motion.div>
 
-      {/* Shooting stars */}
-      {shootingStars.map((star) => (
-        <motion.div
-          key={star.id}
-          className="absolute w-1 h-1 bg-white rounded-full"
-          style={{
-            left: `${star.startX}%`,
-            top: `${star.startY}%`,
-          }}
-          initial={{ opacity: 0, x: 0, y: 0 }}
-          animate={{
-            opacity: [0, 1, 1, 0],
-            x: [0, 300],
-            y: [0, 150],
-            scaleX: [1, 50, 50, 1],
-          }}
-          transition={{
-            duration: 2,
-            delay: star.delay,
-            repeat: Infinity,
-            repeatDelay: 15,
-            ease: 'easeOut',
-          }}
-        />
-      ))}
 
       {/* Hero Content - fades out as user scrolls */}
       <motion.div
@@ -366,91 +410,6 @@ export default function HeroSection() {
         </motion.div>
       </motion.div>
 
-      {/* Why We Exist Content - fades in as dawn breaks */}
-      <motion.div
-        style={{ y: whyWeExistY, opacity: whyWeExistOpacity }}
-        className="absolute inset-0 flex items-center justify-center pointer-events-none"
-      >
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-auto">
-          <div className="space-y-16">
-            {/* Header */}
-            <div className="text-center space-y-4">
-              <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 tracking-tight">
-                Why We Exist
-              </h2>
-              <p className="text-xl text-slate-700">우리는 왜 시작했나요</p>
-            </div>
-
-            {/* Content Cards */}
-            <div className="space-y-8">
-              {/* Opening */}
-              <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-slate-200/50 shadow-xl">
-                <div className="space-y-4">
-                  <p className="text-xl text-slate-700 leading-relaxed italic">
-                    모든 위대한 여정은 작은 질문에서 시작됩니다.
-                  </p>
-                  <p className="text-xl text-slate-900 font-medium leading-relaxed">
-                    "왜 어떤 아이들은 최고의 교육을 받고,
-                    <br />
-                    어떤 아이들은 그 기회조차 갖지 못할까?"
-                  </p>
-                  <p className="text-lg text-slate-600 leading-relaxed">
-                    이 질문은 단순한 호기심이 아니었습니다. 이것은 우리 사회의
-                    가장 근본적인 불평등 중 하나이며, 수많은 아이들의 미래가 걸린
-                    문제였습니다.
-                  </p>
-                </div>
-              </div>
-
-              {/* Problem */}
-              <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-slate-200/50 shadow-xl">
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                  문제를 마주하다
-                </h3>
-                <div className="space-y-3 text-slate-700">
-                  <p>
-                    한국의 사교육비는 연간 26조 원을 넘어섭니다. 어떤 가정은 자녀
-                    한 명당 월 수백만 원을 사교육에 쓰고, 어떤 가정은 교과서 한 권
-                    사기도 버겁습니다.
-                  </p>
-                  <p>
-                    코로나19는 이 격차를 더욱 벌려놓았습니다. 디지털 기기가 있는
-                    학생과 없는 학생, 안정적인 인터넷이 있는 가정과 없는 가정
-                    사이의 학습 격차는 회복하기 어려운 수준으로 커졌습니다.
-                  </p>
-                </div>
-              </div>
-
-              {/* Solution */}
-              <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-slate-200/50 shadow-xl">
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                  가능성을 발견하다
-                </h3>
-                <div className="space-y-3 text-slate-700">
-                  <p>
-                    하지만 우리는 문제만 본 것이 아니라 가능성도 보았습니다. 기술은
-                    교육의 격차를 줄일 수 있는 강력한 도구입니다.
-                  </p>
-                  <p>
-                    적절히 설계되고 공정하게 배분된다면, AI는 모든 학생에게 맞춤형
-                    학습 기회를 제공할 수 있습니다.
-                  </p>
-                </div>
-              </div>
-
-              {/* DawnStar */}
-              <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-3xl p-8 border border-slate-700 shadow-2xl">
-                <h3 className="text-2xl font-bold mb-4">새벽별이 탄생하다</h3>
-                <p className="text-white/90 leading-relaxed">
-                  2025년, 우리는 새벽별 파운데이션을 설립했습니다. 새벽별은 가장
-                  어두운 밤에도 길을 밝히는 별입니다. 우리는 교육의 어둠 속에서
-                  희망의 빛이 되고자 합니다.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </motion.div>
     </motion.section>
   );
 }

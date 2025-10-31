@@ -52,7 +52,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
             className="space-y-8"
           >
             <div>
@@ -98,7 +98,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number], delay: 0.2 }}
             className="space-y-4"
           >
             <div className="mb-8">
@@ -118,7 +118,7 @@ export default function AboutSection() {
                   transition={{
                     duration: 0.5,
                     delay: index * 0.1,
-                    ease: [0.22, 1, 0.36, 1],
+                    ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
                   }}
                   whileHover={{ y: -4 }}
                   className="group relative bg-neutral-50 rounded-xl p-6 border border-neutral-200 hover:border-neutral-300 transition-all duration-300"

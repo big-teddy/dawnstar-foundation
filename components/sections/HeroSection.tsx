@@ -1,18 +1,38 @@
 'use client';
 
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import {
+  motion,
+  useMotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+} from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import Button from '../ui/Button';
+import CursorGlow from '../effects/CursorGlow';
 
 export default function HeroSection() {
   const ref = useRef<HTMLElement>(null);
 
+  // Mouse parallax
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
   const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 20 });
   const smoothMouseY = useSpring(mouseY, { stiffness: 50, damping: 20 });
+
+  // Scroll parallax
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end start'],
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const midgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const foregroundY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
+  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '10%']);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -52,14 +72,43 @@ export default function HeroSection() {
     },
   };
 
-  // Floating star particles
-  const stars = Array.from({ length: 30 }, (_, i) => ({
-    id: i,
-    size: 2 + Math.random() * 4,
+  // Enhanced star system with multiple layers
+  const backgroundStars = Array.from({ length: 150 }, (_, i) => ({
+    id: `bg-${i}`,
+    size: 1 + Math.random() * 2,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    duration: 15 + Math.random() * 10,
+    duration: 20 + Math.random() * 15,
+    delay: Math.random() * 10,
+    opacity: 0.2 + Math.random() * 0.3,
+  }));
+
+  const midgroundStars = Array.from({ length: 80 }, (_, i) => ({
+    id: `mid-${i}`,
+    size: 2 + Math.random() * 3,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    duration: 10 + Math.random() * 8,
     delay: Math.random() * 5,
+    opacity: 0.4 + Math.random() * 0.4,
+  }));
+
+  const foregroundStars = Array.from({ length: 40 }, (_, i) => ({
+    id: `fg-${i}`,
+    size: 3 + Math.random() * 4,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    duration: 5 + Math.random() * 5,
+    delay: Math.random() * 3,
+    opacity: 0.6 + Math.random() * 0.4,
+  }));
+
+  // Shooting stars
+  const shootingStars = Array.from({ length: 3 }, (_, i) => ({
+    id: `shooting-${i}`,
+    startX: Math.random() * 100,
+    startY: Math.random() * 30,
+    delay: i * 8 + Math.random() * 5,
   }));
 
   return (
@@ -67,31 +116,120 @@ export default function HeroSection() {
       ref={ref}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-900"
     >
+      {/* Cursor glow effect */}
+      <CursorGlow />
+
       {/* Animated gradient background */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 animate-gradient" />
       </div>
 
-      {/* Floating stars */}
-      {stars.map((star) => (
+      {/* Multi-layer star system */}
+      {/* Background stars - smallest and slowest */}
+      <motion.div className="absolute inset-0" style={{ y: backgroundY }}>
+        {backgroundStars.map((star) => (
+          <motion.div
+            key={star.id}
+            className="absolute bg-white rounded-full"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: star.size,
+              height: star.size,
+            }}
+            animate={{
+              opacity: [star.opacity * 0.5, star.opacity, star.opacity * 0.5],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: star.duration,
+              delay: star.delay,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+        ))}
+      </motion.div>
+
+      {/* Midground stars - medium size and speed */}
+      <motion.div className="absolute inset-0" style={{ y: midgroundY }}>
+        {midgroundStars.map((star) => (
+          <motion.div
+            key={star.id}
+            className="absolute bg-white rounded-full shadow-lg shadow-white/50"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: star.size,
+              height: star.size,
+            }}
+            animate={{
+              opacity: [star.opacity * 0.6, star.opacity, star.opacity * 0.6],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{
+              duration: star.duration,
+              delay: star.delay,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+        ))}
+      </motion.div>
+
+      {/* Foreground stars - largest and brightest */}
+      <motion.div className="absolute inset-0" style={{ y: foregroundY }}>
+        {foregroundStars.map((star) => (
+          <motion.div
+            key={star.id}
+            className="absolute bg-white rounded-full shadow-xl shadow-white/70"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: star.size,
+              height: star.size,
+            }}
+            animate={{
+              opacity: [star.opacity * 0.7, star.opacity, star.opacity * 0.7],
+              scale: [1, 1.5, 1],
+              boxShadow: [
+                '0 0 10px rgba(255,255,255,0.5)',
+                '0 0 20px rgba(255,255,255,0.8)',
+                '0 0 10px rgba(255,255,255,0.5)',
+              ],
+            }}
+            transition={{
+              duration: star.duration,
+              delay: star.delay,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+        ))}
+      </motion.div>
+
+      {/* Shooting stars */}
+      {shootingStars.map((star) => (
         <motion.div
           key={star.id}
           className="absolute w-1 h-1 bg-white rounded-full"
           style={{
-            left: `${star.x}%`,
-            top: `${star.y}%`,
-            width: star.size,
-            height: star.size,
+            left: `${star.startX}%`,
+            top: `${star.startY}%`,
           }}
+          initial={{ opacity: 0, x: 0, y: 0 }}
           animate={{
-            opacity: [0.2, 0.8, 0.2],
-            scale: [1, 1.2, 1],
+            opacity: [0, 1, 1, 0],
+            x: [0, 300],
+            y: [0, 150],
+            scaleX: [1, 50, 50, 1],
           }}
           transition={{
-            duration: star.duration,
+            duration: 2,
             delay: star.delay,
             repeat: Infinity,
-            ease: 'easeInOut',
+            repeatDelay: 15,
+            ease: 'easeOut',
           }}
         />
       ))}
@@ -100,6 +238,7 @@ export default function HeroSection() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
+        style={{ y: contentY, opacity }}
         className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40"
       >
         <div className="text-center space-y-8">

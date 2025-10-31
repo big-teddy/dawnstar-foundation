@@ -50,40 +50,49 @@ export default function MissionPage() {
           </div>
         </section>
 
-        {/* Core Values */}
+        {/* Core Beliefs */}
         <section>
-          <h2 className="text-4xl font-bold text-slate-900 mb-12">Core Values</h2>
+          <h2 className="text-4xl font-bold text-slate-900 mb-12">
+            핵심 신념
+          </h2>
           <div className="space-y-8">
             {[
               {
-                title: '교육 평등',
-                description: '모든 학생에게 동등한 기회',
+                title: '교육은 모든 사람의 권리',
+                description:
+                  '태어난 환경에 관계없이 평등하게 접근할 수 있어야 합니다',
               },
               {
-                title: '개인화',
-                description: '각자의 속도와 방식 존중',
+                title: '학생 개개인의 속도와 방식 존중',
+                description:
+                  '교육은 학생 개개인의 속도와 방식을 존중해야 합니다',
               },
               {
-                title: '투명성',
-                description: '열린 운영과 책임',
+                title: '잠재력을 발견하는 여정',
+                description:
+                  '교육은 단순한 지식 전달을 넘어, 한 사람의 잠재력을 발견하고 실현할 수 있도록 돕는 여정입니다',
               },
               {
-                title: '지속가능성',
-                description: '장기적 임팩트 창출',
+                title: '기술은 교사의 동반자',
+                description:
+                  '기술은 교사를 대체하는 것이 아니라, 더 나은 교육을 가능하게 하는 동반자입니다',
               },
               {
-                title: '협력',
-                description: '교사, 학생, 사회와의 협업',
+                title: '환경의 변화가 필요',
+                description:
+                  '진정한 교육 혁신은 시스템의 변화에서 시작되며, 우리는 모든 학생이 성장할 수 있는 환경을 만들어야 합니다',
               },
-            ].map((value) => (
+            ].map((value, index) => (
               <div
-                key={value.title}
-                className="border-l-4 border-slate-900 pl-6 py-2"
+                key={index}
+                className="bg-slate-50 border border-slate-200 rounded-2xl p-6"
               >
-                <h3 className="text-2xl font-bold text-slate-900 mb-2">
-                  {value.title}
+                <h3 className="text-xl font-bold text-slate-900 mb-3">
+                  {index + 1}. {value.title}
                 </h3>
-                <p className="text-lg text-slate-600">{value.description}</p>
+                <p className="text-lg text-slate-600 leading-relaxed">
+                  {value.description}
+                </p>
               </div>
             ))}
           </div>

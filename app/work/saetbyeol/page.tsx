@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 import { BookOpen, MessageSquare, Sparkles, Zap } from 'lucide-react';
+import FadeInSection from '@/components/animations/FadeInSection';
+import HoverCard from '@/components/animations/HoverCard';
 
 export const metadata: Metadata = {
   title: '샛별 (AI Tutor) | 새벽별 파운데이션',
@@ -106,20 +108,19 @@ export default function SaetbyeolPage() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {studentFeatures.map((feature, index) => (
-              <div
-                key={index}
-                className="bg-white border border-slate-200 rounded-2xl p-8 hover:shadow-lg transition-shadow"
-              >
-                <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center mb-6">
-                  <feature.icon className="w-6 h-6 text-white" />
-                </div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">
-                  {feature.title}
-                </h4>
-                <p className="text-slate-600 leading-relaxed">
-                  {feature.description}
-                </p>
-              </div>
+              <FadeInSection key={index} delay={index * 0.1}>
+                <HoverCard className="bg-white border border-slate-200 rounded-2xl p-8 hover:shadow-xl transition-shadow h-full">
+                  <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center mb-6">
+                    <feature.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="text-xl font-bold text-slate-900 mb-3">
+                    {feature.title}
+                  </h4>
+                  <p className="text-slate-600 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </HoverCard>
+              </FadeInSection>
             ))}
           </div>
         </div>
@@ -136,17 +137,16 @@ export default function SaetbyeolPage() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {teacherFeatures.map((feature, index) => (
-              <div
-                key={index}
-                className="bg-white border border-slate-200 rounded-2xl p-8 hover:shadow-lg transition-shadow"
-              >
-                <h4 className="text-xl font-bold text-slate-900 mb-3">
-                  {feature.title}
-                </h4>
-                <p className="text-slate-600 leading-relaxed">
-                  {feature.description}
-                </p>
-              </div>
+              <FadeInSection key={index} delay={index * 0.1}>
+                <HoverCard className="bg-white border border-slate-200 rounded-2xl p-8 hover:shadow-xl transition-shadow h-full">
+                  <h4 className="text-xl font-bold text-slate-900 mb-3">
+                    {feature.title}
+                  </h4>
+                  <p className="text-slate-600 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </HoverCard>
+              </FadeInSection>
             ))}
           </div>
         </div>

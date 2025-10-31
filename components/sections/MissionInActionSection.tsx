@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Handshake, Lightbulb, Megaphone, Wrench } from 'lucide-react';
 import ScrollReveal from '../animations/ScrollReveal';
+import HoverCard from '../animations/HoverCard';
 
 export default function MissionInActionSection() {
   const actions = [
@@ -68,7 +69,7 @@ export default function MissionInActionSection() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group"
               >
-                <div className="relative bg-white rounded-2xl p-8 border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300">
+                <HoverCard className="relative bg-white rounded-2xl p-8 border border-slate-200 hover:border-slate-300 hover:shadow-xl transition-all duration-300 h-full">
                   {/* Icon */}
                   <div className="mb-6">
                     <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -88,7 +89,7 @@ export default function MissionInActionSection() {
                       {action.description}
                     </p>
                   </div>
-                </div>
+                </HoverCard>
               </motion.div>
             ))}
           </div>

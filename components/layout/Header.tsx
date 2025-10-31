@@ -20,9 +20,11 @@ const NAVIGATION_ITEMS = [
   },
   {
     label: '우리의 활동',
-    href: '/work/saetbyeol',
+    href: '/work/students',
     dropdown: [
-      { label: '샛별 (AI 튜터)', href: '/work/saetbyeol' },
+      { label: '샛별 (학생)', href: '/work/students' },
+      { label: '샛별 (선생님)', href: '/work/teachers' },
+      { label: '샛별 (부모)', href: '/work/parents' },
     ],
   },
   {

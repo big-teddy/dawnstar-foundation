@@ -19,7 +19,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-slate-900 text-slate-300">
+    <footer className="bg-slate-900 text-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
@@ -27,7 +27,7 @@ export default function Footer() {
             <h3 className="text-xl font-bold text-white mb-4">
               새벽별 파운데이션
             </h3>
-            <p className="text-slate-400 mb-6 max-w-md leading-relaxed">
+            <p className="text-slate-200 mb-6 max-w-md leading-relaxed">
               {SITE_CONFIG.description}
             </p>
             <div className="flex gap-3">
@@ -69,7 +69,7 @@ export default function Footer() {
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="text-slate-400 hover:text-white transition-colors text-sm"
+                    className="text-slate-200 hover:text-white transition-colors text-sm"
                   >
                     {item.label}
                   </a>
@@ -86,7 +86,7 @@ export default function Footer() {
                 <li key={`${item.href}-${index}`}>
                   <a
                     href={item.href}
-                    className="text-slate-400 hover:text-white transition-colors text-sm"
+                    className="text-slate-200 hover:text-white transition-colors text-sm"
                   >
                     {item.label}
                   </a>
@@ -103,7 +103,7 @@ export default function Footer() {
                 <li key={`${item.href}-${index}`}>
                   <a
                     href={item.href}
-                    className="text-slate-400 hover:text-white transition-colors text-sm"
+                    className="text-slate-200 hover:text-white transition-colors text-sm"
                   >
                     {item.label}
                   </a>
@@ -116,13 +116,13 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-slate-800">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-slate-500 text-sm text-center md:text-left">
+            <p className="text-slate-300 text-sm text-center md:text-left">
               © {new Date().getFullYear()} 새벽별 파운데이션 (DawnStar Foundation). All rights
               reserved.
               <br />
               이 재단은 비영리 교육 기술 단체입니다.
             </p>
-            <p className="text-slate-500 text-sm">
+            <p className="text-slate-300 text-sm">
               Made with ❤️ for education equality
             </p>
           </div>

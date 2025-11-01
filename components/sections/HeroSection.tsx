@@ -57,6 +57,17 @@ export default function HeroSection() {
   // Stars fade out as dawn breaks
   const starsOpacity = useTransform(scrollYProgress, [0, 0.5, 0.8], [1, 0.6, 0]);
 
+  // Text color transitions from white (on dark bg) to dark (on light bg)
+  const textColor = useTransform(
+    scrollYProgress,
+    [0, 0.5, 0.85],
+    [
+      'rgb(255, 255, 255)',  // white (on dark background)
+      'rgb(255, 255, 255)',  // white
+      'rgb(15, 23, 42)',     // slate-900 (on light background)
+    ]
+  );
+
   // Sun rises
   const sunOpacity = useTransform(scrollYProgress, [0, 0.4, 0.7, 0.9], [0, 0, 0.4, 0.7]);
   const sunY = useTransform(scrollYProgress, [0, 0.4, 1], ['120%', '120%', '30%']);
@@ -379,17 +390,21 @@ export default function HeroSection() {
         <div className="text-center space-y-8">
           {/* Main Heading */}
           <motion.div variants={itemVariants} className="space-y-6">
-            <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black text-white leading-[1.1] tracking-tight">
+            <motion.h1
+              style={{ color: textColor }}
+              className="text-5xl sm:text-6xl lg:text-8xl font-black leading-[1.1] tracking-tight"
+            >
               모든 아이의 잠재력이
               <br />
               빛나는 세상을 만듭니다
-            </h1>
+            </motion.h1>
           </motion.div>
 
           {/* Sub Heading */}
           <motion.p
             variants={itemVariants}
-            className="text-xl sm:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed font-light"
+            style={{ color: textColor }}
+            className="text-xl sm:text-2xl max-w-3xl mx-auto leading-relaxed font-light"
           >
             새벽별 파운데이션은 AI 기술을 통해
             <br className="hidden sm:block" />

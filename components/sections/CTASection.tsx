@@ -50,7 +50,7 @@ export default function CTASection() {
                 <br />
                 더 나은 교육의 미래
               </h2>
-              <p className="text-lg text-slate-300 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+              <p className="text-lg text-white mb-12 max-w-2xl mx-auto font-light leading-relaxed">
                 새벽별 파운데이션과 함께 모든 학생에게
                 <br className="hidden sm:block" />
                 평등한 교육 기회를 제공하는 데 동참해주세요

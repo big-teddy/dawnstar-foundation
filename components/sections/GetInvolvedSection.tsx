@@ -121,10 +121,10 @@ export default function GetInvolvedSection() {
                 <h4 className="text-3xl sm:text-4xl font-bold text-white mb-6">
                   💝 후원하기
                 </h4>
-                <p className="text-xl mb-6 text-white/90">
+                <p className="text-xl mb-6 text-white">
                   여러분의 후원이 평등한 교육을 만듭니다
                 </p>
-                <p className="text-white/80 mb-8 leading-relaxed">
+                <p className="text-white mb-8 leading-relaxed">
                   새벽별 파운데이션은 투명하게 운영되는 비영리 공익법인입니다.
                   <br />
                   여러분의 후원은 경제적 어려움이 있는 학생들을 위한 무료 학습
@@ -134,8 +134,8 @@ export default function GetInvolvedSection() {
                   해소를 위한 정책 연구에 사용됩니다.
                 </p>
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-8">
-                  <p className="text-lg font-semibold mb-2">준비 중입니다</p>
-                  <p className="text-white/80">
+                  <p className="text-lg font-semibold mb-2 text-white">준비 중입니다</p>
+                  <p className="text-white">
                     후원 시스템을 준비하고 있습니다. 곧 만나요!
                   </p>
                 </div>

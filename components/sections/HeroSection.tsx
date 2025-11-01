@@ -8,12 +8,17 @@ import {
   useTransform,
 } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Button from '../ui/Button';
 import CursorGlow from '../effects/CursorGlow';
 
 export default function HeroSection() {
   const ref = useRef<HTMLElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Mouse parallax
   const mouseX = useMotionValue(0);
@@ -97,39 +102,54 @@ export default function HeroSection() {
     },
   };
 
-  // Optimized Starlight system - useMemo to prevent hydration mismatch
-  const backgroundStars = useMemo(() => Array.from({ length: 100 }, (_, i) => ({
-    id: `bg-${i}`,
-    size: 1 + Math.random() * 1.5,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    duration: 3 + Math.random() * 4,
-    delay: Math.random() * 8,
-    opacity: 0.2 + Math.random() * 0.3,
-    hasCross: false,
-  })), []);
+  // Seeded random number generator for consistent SSR/client rendering
+  const seededRandom = (seed: number) => {
+    const x = Math.sin(seed) * 10000;
+    return x - Math.floor(x);
+  };
 
-  const midgroundStars = useMemo(() => Array.from({ length: 50 }, (_, i) => ({
-    id: `mid-${i}`,
-    size: 1.5 + Math.random() * 2,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    duration: 2 + Math.random() * 3,
-    delay: Math.random() * 6,
-    opacity: 0.4 + Math.random() * 0.4,
-    hasCross: Math.random() > 0.85,
-  })), []);
+  // Optimized Starlight system - using seeded random to prevent hydration mismatch
+  const backgroundStars = useMemo(() => Array.from({ length: 100 }, (_, i) => {
+    const seed = i * 1000;
+    return {
+      id: `bg-${i}`,
+      size: 1 + seededRandom(seed) * 1.5,
+      x: seededRandom(seed + 1) * 100,
+      y: seededRandom(seed + 2) * 100,
+      duration: 3 + seededRandom(seed + 3) * 4,
+      delay: seededRandom(seed + 4) * 8,
+      opacity: 0.2 + seededRandom(seed + 5) * 0.3,
+      hasCross: false,
+    };
+  }), []);
 
-  const foregroundStars = useMemo(() => Array.from({ length: 30 }, (_, i) => ({
-    id: `fg-${i}`,
-    size: 2 + Math.random() * 2.5,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    duration: 1.5 + Math.random() * 2.5,
-    delay: Math.random() * 4,
-    opacity: 0.6 + Math.random() * 0.4,
-    hasCross: Math.random() > 0.5,
-  })), []);
+  const midgroundStars = useMemo(() => Array.from({ length: 50 }, (_, i) => {
+    const seed = i * 2000;
+    return {
+      id: `mid-${i}`,
+      size: 1.5 + seededRandom(seed) * 2,
+      x: seededRandom(seed + 1) * 100,
+      y: seededRandom(seed + 2) * 100,
+      duration: 2 + seededRandom(seed + 3) * 3,
+      delay: seededRandom(seed + 4) * 6,
+      opacity: 0.4 + seededRandom(seed + 5) * 0.4,
+      hasCross: seededRandom(seed + 6) > 0.85,
+    };
+  }), []);
+
+  const foregroundStars = useMemo(() => Array.from({ length: 30 }, (_, i) => {
+    const seed = i * 3000;
+    return {
+      id: `fg-${i}`,
+      size: 2 + seededRandom(seed) * 2.5,
+      x: seededRandom(seed + 1) * 100,
+      y: seededRandom(seed + 2) * 100,
+      duration: 1.5 + seededRandom(seed + 3) * 2.5,
+      delay: seededRandom(seed + 4) * 4,
+      opacity: 0.6 + seededRandom(seed + 5) * 0.4,
+      hasCross: seededRandom(seed + 6) > 0.5,
+    };
+  }), []);
 
 
   return (
@@ -175,11 +195,12 @@ export default function HeroSection() {
 
       {/* Optimized star system - Rolls-Royce Starlight inspired */}
       {/* Background stars - simple and performant */}
-      <motion.div
-        className="absolute inset-0"
-        style={{ y: backgroundY, opacity: starsOpacity }}
-      >
-        {backgroundStars.map((star) => (
+      {mounted && (
+        <motion.div
+          className="absolute inset-0"
+          style={{ y: backgroundY, opacity: starsOpacity }}
+        >
+          {backgroundStars.map((star) => (
           <motion.div
             key={star.id}
             className="absolute rounded-full bg-white"
@@ -203,12 +224,14 @@ export default function HeroSection() {
           />
         ))}
       </motion.div>
+      )}
 
       {/* Midground stars - enhanced glow */}
-      <motion.div
-        className="absolute inset-0"
-        style={{ y: midgroundY, opacity: starsOpacity }}
-      >
+      {mounted && (
+        <motion.div
+          className="absolute inset-0"
+          style={{ y: midgroundY, opacity: starsOpacity }}
+        >
         {midgroundStars.map((star) => (
           <div
             key={star.id}
@@ -263,12 +286,14 @@ export default function HeroSection() {
           </div>
         ))}
       </motion.div>
+      )}
 
       {/* Foreground stars - premium Starlight effect */}
-      <motion.div
-        className="absolute inset-0"
-        style={{ y: foregroundY, opacity: starsOpacity }}
-      >
+      {mounted && (
+        <motion.div
+          className="absolute inset-0"
+          style={{ y: foregroundY, opacity: starsOpacity }}
+        >
         {foregroundStars.map((star) => (
           <div
             key={star.id}
@@ -340,6 +365,7 @@ export default function HeroSection() {
           </div>
         ))}
       </motion.div>
+      )}
 
 
       {/* Hero Content - fades out as user scrolls */}
@@ -382,6 +408,7 @@ export default function HeroSection() {
             <Button
               size="lg"
               className="group bg-white text-slate-900 hover:bg-slate-50 px-8 py-4 text-base font-semibold transition-all duration-300 shadow-lg"
+              aria-label="새벽별 파운데이션의 미션 알아보기"
             >
               우리의 미션 알아보기
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />

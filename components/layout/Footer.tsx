@@ -117,7 +117,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-slate-800">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-slate-500 text-sm text-center md:text-left">
-              © 2025 새벽별 파운데이션 (DawnStar Foundation). All rights
+              © {new Date().getFullYear()} 새벽별 파운데이션 (DawnStar Foundation). All rights
               reserved.
               <br />
               이 재단은 비영리 교육 기술 단체입니다.

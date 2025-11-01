@@ -1,10 +1,7 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import {
-  Shield,
-  Eye,
   Heart,
-  TrendingUp,
-  MessageCircle,
   Clock,
   Award,
   Users,
@@ -12,6 +9,7 @@ import {
 import FadeInSection from '@/components/animations/FadeInSection';
 import HoverCard from '@/components/animations/HoverCard';
 import Button from '@/components/ui/Button';
+import ParentFeatureShowcase from '@/components/showcase/ParentFeatureShowcase';
 
 export const metadata: Metadata = {
   title: '샛별 (학부모용) | 새벽별 파운데이션',
@@ -19,33 +17,6 @@ export const metadata: Metadata = {
 };
 
 export default function ParentsPage() {
-  const parentFeatures = [
-    {
-      icon: Eye,
-      title: '학습 과정 투명하게 확인',
-      description:
-        '자녀가 샛별과 나눈 대화 내용을 확인하실 수 있습니다. 어떤 주제를 공부했는지, 어떤 질문을 했는지 투명하게 공유됩니다.',
-    },
-    {
-      icon: TrendingUp,
-      title: '학습 진도와 성장 추적',
-      description:
-        '자녀의 학습 진도, 이해도, 관심 분야를 한눈에 파악하실 수 있습니다. 강점과 보완이 필요한 부분을 데이터로 확인하세요.',
-    },
-    {
-      icon: Shield,
-      title: '안전하고 건전한 학습 환경',
-      description:
-        '학습과 관련 없는 주제는 차단됩니다. 부적절한 내용이 감지되면 즉시 알림을 보내드립니다.',
-    },
-    {
-      icon: MessageCircle,
-      title: '자녀와의 대화 소재',
-      description:
-        '자녀가 관심 있어 하는 주제와 학습 현황을 파악하여 더 깊이 있는 대화를 나누실 수 있습니다.',
-    },
-  ];
-
   const parentTools = [
     {
       icon: Heart,
@@ -97,7 +68,12 @@ export default function ParentsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Hero */}
         <FadeInSection>
-          <div className="mb-20 text-center">
+          <div className="mb-20 text-center relative">
+            {/* Animated gradient background blur */}
+            <div className="absolute -inset-x-32 -inset-y-16 opacity-20 blur-3xl pointer-events-none">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 animate-gradient-x" />
+            </div>
+            <div className="relative">
             <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 mb-6">
               자녀의 학습,
               <br />
@@ -111,20 +87,26 @@ export default function ParentsPage() {
               자녀의 성장을 함께 응원합니다
             </p>
             <div className="flex justify-center gap-4">
-              <Button size="lg" className="font-semibold">
-                자녀 등록하고 시작하기
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="font-semibold border-2"
-              >
-                안전 기능 알아보기
-              </Button>
+              <Link href="/get-involved">
+                <Button size="lg" className="font-semibold" aria-label="자녀 등록하고 샛별 시작하기">
+                  자녀 등록하고 시작하기
+                </Button>
+              </Link>
+              <Link href="/work/saetbyeol">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="font-semibold border-2"
+                  aria-label="샛별 안전 기능 알아보기"
+                >
+                  안전 기능 알아보기
+                </Button>
+              </Link>
             </div>
             <p className="text-sm text-slate-500 mt-4">
               첫 달 무료 체험 · 언제든 해지 가능
             </p>
+            </div>
           </div>
         </FadeInSection>
 
@@ -158,7 +140,7 @@ export default function ParentsPage() {
             </div>
           </FadeInSection>
 
-          {/* Main Features */}
+          {/* Feature Showcase */}
           <div className="mb-16">
             <FadeInSection>
               <h3 className="text-3xl font-bold text-slate-900 mb-4 text-center">
@@ -168,23 +150,9 @@ export default function ParentsPage() {
                 자녀의 학습을 투명하게 확인하고 안전하게 지원합니다
               </p>
             </FadeInSection>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {parentFeatures.map((feature, index) => (
-                <FadeInSection key={index} delay={index * 0.1}>
-                  <HoverCard className="bg-white border border-slate-200 rounded-2xl p-8 hover:shadow-xl transition-shadow h-full">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
-                      <feature.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <h4 className="text-xl font-bold text-slate-900 mb-3">
-                      {feature.title}
-                    </h4>
-                    <p className="text-slate-600 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </HoverCard>
-                </FadeInSection>
-              ))}
-            </div>
+            <FadeInSection>
+              <ParentFeatureShowcase />
+            </FadeInSection>
           </div>
         </div>
 
@@ -353,22 +321,22 @@ export default function ParentsPage() {
                   최대 3명 자녀 등록 가능 · 언제든 해지 가능
                 </p>
               </div>
-              <div className="space-y-3 text-left mb-8">
-                <div className="flex items-center gap-2">
+              <div className="space-y-3 mb-8">
+                <div className="flex items-center justify-center gap-2">
                   <span className="text-green-600">✓</span>
                   <span className="text-slate-700">무제한 질문 및 학습</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center gap-2">
                   <span className="text-green-600">✓</span>
                   <span className="text-slate-700">학습 진도 리포트</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center gap-2">
                   <span className="text-green-600">✓</span>
                   <span className="text-slate-700">
                     전체 대화 내역 확인 가능
                   </span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center gap-2">
                   <span className="text-green-600">✓</span>
                   <span className="text-slate-700">안전 모니터링 알림</span>
                 </div>
@@ -386,26 +354,32 @@ export default function ParentsPage() {
         {/* CTA */}
         <FadeInSection>
           <div className="bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-3xl p-10 lg:p-12 text-center">
-            <h3 className="text-3xl sm:text-4xl font-bold mb-4">
+            <h3 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               자녀의 학습 여정을 함께 시작하세요
             </h3>
             <p className="text-xl text-white/90 mb-8">
               안전하고 효과적인 AI 학습 도구, 샛별과 함께라면 안심입니다
             </p>
             <div className="flex justify-center gap-4">
-              <Button
-                size="lg"
-                className="bg-white text-blue-600 hover:bg-slate-50 font-semibold"
-              >
-                지금 시작하기
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white/10 font-semibold"
-              >
-                자세히 알아보기
-              </Button>
+              <Link href="/get-involved">
+                <Button
+                  size="lg"
+                  className="bg-white text-blue-600 hover:bg-slate-50 font-semibold"
+                  aria-label="학부모용 샛별 지금 시작하기"
+                >
+                  지금 시작하기
+                </Button>
+              </Link>
+              <Link href="/work/saetbyeol">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-white text-white hover:bg-white/10 font-semibold"
+                  aria-label="샛별에 대해 자세히 알아보기"
+                >
+                  자세히 알아보기
+                </Button>
+              </Link>
             </div>
           </div>
         </FadeInSection>

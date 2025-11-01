@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
+import ScrollToTop from '@/components/ScrollToTop';
 import './globals.css';
 
 const notoSansKR = Noto_Sans_KR({
@@ -53,6 +54,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className={notoSansKR.variable}>
       <body className={notoSansKR.className}>
+        <ScrollToTop />
         <Header />
         <main>{children}</main>
         <Footer />

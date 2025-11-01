@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import {
   BookOpen,
   MessageSquare,
@@ -12,6 +13,7 @@ import {
 import FadeInSection from '@/components/animations/FadeInSection';
 import HoverCard from '@/components/animations/HoverCard';
 import Button from '@/components/ui/Button';
+import StudentFeatureShowcase from '@/components/showcase/StudentFeatureShowcase';
 
 export const metadata: Metadata = {
   title: '샛별 (학생용) | 새벽별 파운데이션',
@@ -88,7 +90,12 @@ export default function StudentsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Hero */}
         <FadeInSection>
-          <div className="mb-20 text-center">
+          <div className="mb-20 text-center relative">
+            {/* Animated gradient background blur */}
+            <div className="absolute -inset-x-32 -inset-y-16 opacity-20 blur-3xl pointer-events-none">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 animate-gradient-x" />
+            </div>
+            <div className="relative">
             <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 mb-6">
               언제 어디서나 함께하는
               <br />
@@ -102,16 +109,22 @@ export default function StudentsPage() {
               샛별이 항상 곁에서 도와줍니다
             </p>
             <div className="flex justify-center gap-4">
-              <Button size="lg" className="font-semibold">
-                지금 시작하기
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="font-semibold border-2"
-              >
-                샛별 체험해보기
-              </Button>
+              <Link href="/get-involved">
+                <Button size="lg" className="font-semibold" aria-label="샛별 학습 시작하기">
+                  지금 시작하기
+                </Button>
+              </Link>
+              <Link href="/work/saetbyeol">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="font-semibold border-2"
+                  aria-label="샛별 AI 튜터 체험해보기"
+                >
+                  샛별 체험해보기
+                </Button>
+              </Link>
+            </div>
             </div>
           </div>
         </FadeInSection>
@@ -152,7 +165,7 @@ export default function StudentsPage() {
             </div>
           </FadeInSection>
 
-          {/* Core Features */}
+          {/* Feature Showcase */}
           <div className="mb-16">
             <FadeInSection>
               <h3 className="text-3xl font-bold text-slate-900 mb-4 text-center">
@@ -162,23 +175,9 @@ export default function StudentsPage() {
                 학습의 모든 순간, 샛별이 함께합니다
               </p>
             </FadeInSection>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {studentFeatures.map((feature, index) => (
-                <FadeInSection key={index} delay={index * 0.1}>
-                  <HoverCard className="bg-white border border-slate-200 rounded-2xl p-8 hover:shadow-xl transition-shadow h-full">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
-                      <feature.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <h4 className="text-xl font-bold text-slate-900 mb-3">
-                      {feature.title}
-                    </h4>
-                    <p className="text-slate-600 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </HoverCard>
-                </FadeInSection>
-              ))}
-            </div>
+            <FadeInSection>
+              <StudentFeatureShowcase />
+            </FadeInSection>
           </div>
         </div>
 
@@ -321,26 +320,32 @@ export default function StudentsPage() {
         {/* CTA */}
         <FadeInSection>
           <div className="bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-3xl p-10 lg:p-12 text-center">
-            <h3 className="text-3xl sm:text-4xl font-bold mb-4">
+            <h3 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               샛별과 함께 공부를 시작해볼까요?
             </h3>
             <p className="text-xl text-white/90 mb-8">
               지금 시작하면 무료 체험 기간을 드립니다
             </p>
             <div className="flex justify-center gap-4">
-              <Button
-                size="lg"
-                className="bg-white text-blue-600 hover:bg-slate-50 font-semibold"
-              >
-                무료로 시작하기
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white/10 font-semibold"
-              >
-                더 알아보기
-              </Button>
+              <Link href="/get-involved">
+                <Button
+                  size="lg"
+                  className="bg-white text-blue-600 hover:bg-slate-50 font-semibold"
+                  aria-label="샛별 무료로 시작하기"
+                >
+                  무료로 시작하기
+                </Button>
+              </Link>
+              <Link href="/work/saetbyeol">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-white text-white hover:bg-white/10 font-semibold"
+                  aria-label="샛별에 대해 더 알아보기"
+                >
+                  더 알아보기
+                </Button>
+              </Link>
             </div>
             <p className="text-sm text-white/70 mt-6">
               2025년 중 베타 버전 출시 예정

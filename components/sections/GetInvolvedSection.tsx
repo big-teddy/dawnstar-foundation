@@ -118,7 +118,7 @@ export default function GetInvolvedSection() {
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl mb-6">
                   <Heart className="w-8 h-8 text-white" />
                 </div>
-                <h4 className="text-3xl sm:text-4xl font-bold mb-6">
+                <h4 className="text-3xl sm:text-4xl font-bold text-white mb-6">
                   💝 후원하기
                 </h4>
                 <p className="text-xl mb-6 text-white/90">

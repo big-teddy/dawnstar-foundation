@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Heart, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -64,7 +64,7 @@ export default function Header() {
   const handleMouseLeave = () => {
     const timeout = setTimeout(() => {
       setOpenDropdown(null);
-    }, 200);
+    }, 150);
     setCloseTimeout(timeout);
   };
 
@@ -75,6 +75,15 @@ export default function Header() {
       setCloseTimeout(null);
     }
   };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (closeTimeout) {
+        clearTimeout(closeTimeout);
+      }
+    };
+  }, [closeTimeout]);
 
   return (
     <motion.header
@@ -120,31 +129,33 @@ export default function Header() {
                 </Link>
 
                 {/* Dropdown Menu */}
-                {item.dropdown && openDropdown === item.label && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-slate-200 py-2 z-50"
-                    onMouseEnter={() => handleMouseEnter(item.label)}
-                    onMouseLeave={handleMouseLeave}
-                    role="menu"
-                    aria-label={`${item.label} 하위 메뉴`}
-                  >
-                    {item.dropdown.map((dropdownItem) => (
-                      <Link
-                        key={dropdownItem.href}
-                        href={dropdownItem.href}
-                        className="block px-4 py-2.5 text-sm text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-all duration-200 rounded-lg mx-1"
-                        onClick={handleDropdownClick}
-                        role="menuitem"
-                      >
-                        {dropdownItem.label}
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
+                <AnimatePresence>
+                  {item.dropdown && openDropdown === item.label && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                      className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-xl border border-slate-200 py-2 z-50"
+                      onMouseEnter={() => handleMouseEnter(item.label)}
+                      onMouseLeave={handleMouseLeave}
+                      role="menu"
+                      aria-label={`${item.label} 하위 메뉴`}
+                    >
+                      {item.dropdown.map((dropdownItem) => (
+                        <Link
+                          key={dropdownItem.href}
+                          href={dropdownItem.href}
+                          className="block px-4 py-2.5 text-sm text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-all duration-200 rounded-lg mx-1"
+                          onClick={handleDropdownClick}
+                          role="menuitem"
+                        >
+                          {dropdownItem.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ))}
           </nav>
@@ -179,73 +190,78 @@ export default function Header() {
       </div>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="md:hidden bg-white border-t border-slate-200 shadow-lg"
-        >
-          <div className="max-w-7xl mx-auto px-4 py-6 space-y-2">
-            {NAVIGATION_ITEMS.map((item) => (
-              <div key={item.label}>
-                {item.dropdown ? (
-                  <div>
-                    <button
-                      onClick={() => setMobileOpenDropdown(mobileOpenDropdown === item.label ? null : item.label)}
-                      className="w-full flex items-center justify-between px-4 py-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg font-medium transition-all"
-                      aria-expanded={mobileOpenDropdown === item.label}
-                      aria-label={`${item.label} 메뉴 ${mobileOpenDropdown === item.label ? '닫기' : '열기'}`}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="md:hidden bg-white border-t border-slate-200 shadow-lg overflow-hidden"
+          >
+            <div className="max-w-7xl mx-auto px-4 py-6 space-y-2">
+              {NAVIGATION_ITEMS.map((item) => (
+                <div key={item.label}>
+                  {item.dropdown ? (
+                    <div>
+                      <button
+                        onClick={() => setMobileOpenDropdown(mobileOpenDropdown === item.label ? null : item.label)}
+                        className="w-full flex items-center justify-between px-4 py-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg font-medium transition-all"
+                        aria-expanded={mobileOpenDropdown === item.label}
+                        aria-label={`${item.label} 메뉴 ${mobileOpenDropdown === item.label ? '닫기' : '열기'}`}
+                      >
+                        {item.label}
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileOpenDropdown === item.label ? 'rotate-180' : ''}`} />
+                      </button>
+                      <AnimatePresence>
+                        {mobileOpenDropdown === item.label && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                            className="mt-1 ml-4 space-y-1 overflow-hidden"
+                          >
+                            {item.dropdown.map((dropdownItem) => (
+                              <Link
+                                key={dropdownItem.href}
+                                href={dropdownItem.href}
+                                className="block px-4 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all"
+                                onClick={() => {
+                                  setIsMobileMenuOpen(false);
+                                  setMobileOpenDropdown(null);
+                                }}
+                              >
+                                {dropdownItem.label}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="block px-4 py-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg font-medium transition-all"
+                      onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {item.label}
-                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileOpenDropdown === item.label ? 'rotate-180' : ''}`} />
-                    </button>
-                    {mobileOpenDropdown === item.label && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                        className="mt-1 ml-4 space-y-1"
-                      >
-                        {item.dropdown.map((dropdownItem) => (
-                          <Link
-                            key={dropdownItem.href}
-                            href={dropdownItem.href}
-                            className="block px-4 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all"
-                            onClick={() => {
-                              setIsMobileMenuOpen(false);
-                              setMobileOpenDropdown(null);
-                            }}
-                          >
-                            {dropdownItem.label}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </div>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className="block px-4 py-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg font-medium transition-all"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                )}
+                    </Link>
+                  )}
+                </div>
+              ))}
+              <div className="pt-4">
+                <Link href="/get-involved">
+                  <Button className="w-full font-semibold bg-slate-900 text-white hover:bg-slate-800" aria-label="새벽별 파운데이션 후원하기">
+                    <Heart className="mr-2 w-4 h-4" />
+                    후원하기
+                  </Button>
+                </Link>
               </div>
-            ))}
-            <div className="pt-4">
-              <Link href="/get-involved">
-                <Button className="w-full font-semibold bg-slate-900 text-white hover:bg-slate-800" aria-label="새벽별 파운데이션 후원하기">
-                  <Heart className="mr-2 w-4 h-4" />
-                  후원하기
-                </Button>
-              </Link>
             </div>
-          </div>
-        </motion.div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

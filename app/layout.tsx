@@ -85,7 +85,7 @@ export const metadata: Metadata = {
     canonical: 'https://dawnstarfoundation.org',
   },
   verification: {
-    google: 'GOOGLE_VERIFICATION_CODE_HERE',
+    google: '6LlN1TK5hXIRjig-q02lzDwrfPOPdwAV6S2tBRo00FM',
   },
 };
 

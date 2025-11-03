@@ -4,8 +4,25 @@ import FadeInSection from '@/components/animations/FadeInSection';
 import HoverCard from '@/components/animations/HoverCard';
 
 export const metadata: Metadata = {
-  title: '샛별 (AI Tutor) | 새벽별 파운데이션',
-  description: '한국 교육 환경에 최적화된 AI 기반 맞춤형 학습 플랫폼',
+  title: '샛별 (AI Tutor)',
+  description:
+    '한국 교육 환경에 최적화된 AI 기반 맞춤형 학습 플랫폼. 소크라테스식 대화, 개인화된 학습 경로, 즉시 피드백으로 학생들의 학습을 지원합니다.',
+  keywords: [
+    'AI 튜터',
+    '샛별',
+    '맞춤형 학습',
+    '온라인 학습',
+    '소크라테스식 대화',
+    '개인화 학습',
+    '학습 지원',
+    'AI 교육',
+  ],
+  openGraph: {
+    title: '샛별 (AI Tutor) | 새벽별 파운데이션',
+    description:
+      '한국 교육 환경에 최적화된 AI 기반 맞춤형 학습 플랫폼. 학생들의 개별 학습을 지원합니다.',
+    url: 'https://dawnstar.org/work/saetbyeol',
+  },
 };
 
 export default function SaetbyeolPage() {

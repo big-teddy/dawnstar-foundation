@@ -1,0 +1,27 @@
+import { MetadataRoute } from 'next';
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://dawnstar.org';
+
+  // 정적 페이지들
+  const routes = [
+    '',
+    '/about/mission',
+    '/about/story',
+    '/about/manifesto',
+    '/about/commitments',
+    '/work',
+    '/work/saetbyeol',
+    '/work/students',
+    '/work/teachers',
+    '/work/parents',
+    '/get-involved',
+  ].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: route === '' ? 1 : 0.8,
+  }));
+
+  return routes;
+}

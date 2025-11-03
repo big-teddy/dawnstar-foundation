@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: '우리의 미션 | 새벽별 파운데이션',
     description:
       '교육이 모든 사람의 권리이며, 학생 개개인의 속도와 방식을 존중하는 맞춤형 교육을 추구합니다.',
-    url: 'https://dawnstar.org/about/mission',
+    url: 'https://dawnstarfoundation.org/about/mission',
   },
 };
 

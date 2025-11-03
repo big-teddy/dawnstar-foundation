@@ -15,7 +15,7 @@ const notoSansKR = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://dawnstar.org'),
+  metadataBase: new URL('https://dawnstarfoundation.org'),
   title: {
     default: '새벽별 파운데이션 | AI 기술로 모든 학생에게 맞춤형 교육 기회를',
     template: '%s | 새벽별 파운데이션',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     '교육 기부',
     '교육 혁신',
   ],
-  authors: [{ name: '새벽별 파운데이션', url: 'https://dawnstar.org' }],
+  authors: [{ name: '새벽별 파운데이션', url: 'https://dawnstarfoundation.org' }],
   creator: '새벽별 파운데이션',
   publisher: '새벽별 파운데이션',
   formatDetection: {
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: '새벽별 파운데이션 | AI 교육 혁신',
     description:
       '모든 학생이 최고의 교육을 받을 수 있는 세상을 만듭니다. AI 기술로 교육 불평등을 해소하고 개인 맞춤형 학습을 제공합니다.',
-    url: 'https://dawnstar.org',
+    url: 'https://dawnstarfoundation.org',
     siteName: '새벽별 파운데이션',
     locale: 'ko_KR',
     type: 'website',
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://dawnstar.org',
+    canonical: 'https://dawnstarfoundation.org',
   },
   verification: {
     google: 'GOOGLE_VERIFICATION_CODE_HERE',

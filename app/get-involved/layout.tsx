@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: '함께하기 | 새벽별 파운데이션',
     description:
       '후원, 자원봉사, 파트너십 등 다양한 방법으로 교육 평등 실현에 동참해주세요.',
-    url: 'https://dawnstar.org/get-involved',
+    url: 'https://dawnstarfoundation.org/get-involved',
   },
 };
 

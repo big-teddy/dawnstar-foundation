@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: '샛별 (AI Tutor) | 새벽별 파운데이션',
     description:
       '한국 교육 환경에 최적화된 AI 기반 맞춤형 학습 플랫폼. 학생들의 개별 학습을 지원합니다.',
-    url: 'https://dawnstar.org/work/saetbyeol',
+    url: 'https://dawnstarfoundation.org/work/saetbyeol',
   },
 };
 

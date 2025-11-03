@@ -13,7 +13,7 @@
 
 Vercel이 제공하는 정확한 값을 사용하세요. 일반적으로:
 
-#### 루트 도메인 (예: dawnstar.org)
+#### 루트 도메인 (예: dawnstarfoundation.org)
 
 ```
 Type: A
@@ -21,7 +21,7 @@ Name: @ (또는 비워두기)
 Value: 76.76.21.21
 ```
 
-#### www 서브도메인 (예: www.dawnstar.org)
+#### www 서브도메인 (예: www.dawnstarfoundation.org)
 
 ```
 Type: CNAME

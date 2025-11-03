@@ -7,7 +7,7 @@
 ### 1.1 사이트 등록
 1. [Google Search Console](https://search.google.com/search-console)에 접속
 2. "속성 추가" 클릭
-3. "URL 접두어" 선택 후 `https://dawnstar.org` 입력
+3. "URL 접두어" 선택 후 `https://dawnstarfoundation.org` 입력
 4. 소유권 확인 방법 선택
 
 ### 1.2 소유권 확인
@@ -23,7 +23,7 @@
 
 ### 1.3 Sitemap 제출
 1. Google Search Console > Sitemaps
-2. `https://dawnstar.org/sitemap.xml` 입력 후 제출
+2. `https://dawnstarfoundation.org/sitemap.xml` 입력 후 제출
 3. 상태가 "성공"으로 표시되는지 확인
 
 ## 2. Google Analytics 설정
@@ -52,7 +52,7 @@ Vercel Dashboard에서 다음 환경 변수를 설정:
 
 ### 3.2 도메인 연결
 1. Vercel Dashboard > Domains
-2. `dawnstar.org` 도메인 추가
+2. `dawnstarfoundation.org` 도메인 추가
 3. DNS 설정에 따라 A/CNAME 레코드 추가
 
 ## 4. SEO 체크리스트

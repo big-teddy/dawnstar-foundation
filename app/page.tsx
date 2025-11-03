@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: '새벽별 파운데이션 | AI 교육으로 모든 학생에게 평등한 기회를',
     description:
       '교육 불평등을 해소하고 모든 학생에게 AI 기반 맞춤형 학습을 제공하는 비영리 교육 기술 단체입니다.',
-    url: 'https://dawnstar.org',
+    url: 'https://dawnstarfoundation.org',
     type: 'website',
   },
 };

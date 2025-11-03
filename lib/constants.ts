@@ -4,8 +4,8 @@ export const SITE_CONFIG = {
   description:
     'AI 기술로 모든 학생에게 맞춤형 교육 기회를 제공하는 비영리 교육 기술 단체입니다.',
   mission: '모든 학생이 최고의 교육을 받을 수 있는 세상',
-  url: 'https://dawnstar.org',
-  email: 'hello@dawnstar.org',
+  url: 'https://dawnstarfoundation.org',
+  email: 'hello@dawnstarfoundation.org',
   phone: '02-1234-5678',
   address: '서울특별시 강남구 테헤란로 123',
   social: {

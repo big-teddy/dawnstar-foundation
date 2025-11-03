@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: '우리의 활동 | 새벽별 파운데이션',
     description:
       'AI 튜터 샛별과 다양한 교육 프로젝트로 학생, 교사, 학부모 모두를 지원합니다.',
-    url: 'https://dawnstar.org/work',
+    url: 'https://dawnstarfoundation.org/work',
   },
 };
 

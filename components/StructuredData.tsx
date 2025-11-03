@@ -4,8 +4,8 @@ export default function StructuredData() {
     '@type': 'Organization',
     name: '새벽별 파운데이션',
     alternateName: 'DawnStar Foundation',
-    url: 'https://dawnstar.org',
-    logo: 'https://dawnstar.org/logo.png',
+    url: 'https://dawnstarfoundation.org',
+    logo: 'https://dawnstarfoundation.org/logo.png',
     description:
       '교육 불평등을 해소하고, 모든 학생에게 세계 최고 수준의 개인 맞춤형 학습 경험을 제공하는 비영리 교육 기술 단체',
     foundingDate: '2024',
@@ -23,8 +23,8 @@ export default function StructuredData() {
     '@context': 'https://schema.org',
     '@type': 'NGO',
     name: '새벽별 파운데이션',
-    url: 'https://dawnstar.org',
-    logo: 'https://dawnstar.org/logo.png',
+    url: 'https://dawnstarfoundation.org',
+    logo: 'https://dawnstarfoundation.org/logo.png',
     description:
       '교육 불평등을 해소하고 AI 기술로 모든 학생에게 맞춤형 교육 기회를 제공하는 비영리 단체',
     areaServed: 'KR',
@@ -35,7 +35,7 @@ export default function StructuredData() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: '새벽별 파운데이션',
-    url: 'https://dawnstar.org',
+    url: 'https://dawnstarfoundation.org',
     description:
       '교육 불평등을 해소하고 모든 학생에게 AI 기반 맞춤형 학습을 제공하는 비영리 교육 기술 단체',
     inLanguage: 'ko-KR',
@@ -43,7 +43,7 @@ export default function StructuredData() {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: 'https://dawnstar.org/search?q={search_term_string}',
+        urlTemplate: 'https://dawnstarfoundation.org/search?q={search_term_string}',
       },
       'query-input': 'required name=search_term_string',
     },

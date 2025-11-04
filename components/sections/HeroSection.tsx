@@ -119,8 +119,9 @@ export default function HeroSection() {
     return x - Math.floor(x);
   };
 
-  // Optimized Starlight system - using seeded random to prevent hydration mismatch
-  const backgroundStars = useMemo(() => Array.from({ length: 100 }, (_, i) => {
+  // Optimized Starlight system - Reduced from 180 to 50 stars for performance
+  // Using seeded random to prevent hydration mismatch
+  const backgroundStars = useMemo(() => Array.from({ length: 25 }, (_, i) => {
     const seed = i * 1000;
     return {
       id: `bg-${i}`,
@@ -134,7 +135,7 @@ export default function HeroSection() {
     };
   }), []);
 
-  const midgroundStars = useMemo(() => Array.from({ length: 50 }, (_, i) => {
+  const midgroundStars = useMemo(() => Array.from({ length: 15 }, (_, i) => {
     const seed = i * 2000;
     return {
       id: `mid-${i}`,
@@ -148,7 +149,7 @@ export default function HeroSection() {
     };
   }), []);
 
-  const foregroundStars = useMemo(() => Array.from({ length: 30 }, (_, i) => {
+  const foregroundStars = useMemo(() => Array.from({ length: 10 }, (_, i) => {
     const seed = i * 3000;
     return {
       id: `fg-${i}`,
@@ -167,7 +168,7 @@ export default function HeroSection() {
     <motion.section
       ref={ref}
       style={{ backgroundColor }}
-      className="relative min-h-[250vh] overflow-hidden"
+      className="relative min-h-screen lg:min-h-[200vh] overflow-hidden"
     >
       {/* Cursor glow effect */}
       <CursorGlow />

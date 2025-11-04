@@ -64,7 +64,7 @@ export default function HowYouCanHelpSection() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {ways.map((way, index) => (
               <motion.div
-                key={index}
+                key={way.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

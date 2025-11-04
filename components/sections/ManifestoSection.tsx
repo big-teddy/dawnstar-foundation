@@ -127,7 +127,7 @@ export default function ManifestoSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mb-20">
             {principles.map((principle, index) => (
               <motion.div
-                key={index}
+                key={principle.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

@@ -16,8 +16,23 @@ import Button from '@/components/ui/Button';
 import StudentFeatureShowcase from '@/components/showcase/StudentFeatureShowcase';
 
 export const metadata: Metadata = {
-  title: '샛별 (학생용) | 새벽별 파운데이션',
-  description: '학생을 위한 AI 기반 개인 맞춤형 학습 플랫폼',
+  title: '샛별 (학생용)',
+  description:
+    '학생을 위한 AI 기반 개인 맞춤형 학습 플랫폼. 소크라테스식 대화, 즉시 피드백, 24/7 학습 지원으로 스스로 학습하는 능력을 키웁니다.',
+  keywords: [
+    '학생용 AI 튜터',
+    '개인 맞춤 학습',
+    '온라인 학습',
+    '소크라테스식 학습',
+    '학습 지원',
+    '학생 AI',
+  ],
+  openGraph: {
+    title: '샛별 (학생용) | 새벽별 파운데이션',
+    description:
+      '나만의 AI 학습 도우미. 언제 어디서나 질문하고, 스스로 답을 찾아가는 학습 경험.',
+    url: 'https://dawnstarfoundation.org/work/students',
+  },
 };
 
 export default function StudentsPage() {

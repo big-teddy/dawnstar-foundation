@@ -12,8 +12,23 @@ import Button from '@/components/ui/Button';
 import ParentFeatureShowcase from '@/components/showcase/ParentFeatureShowcase';
 
 export const metadata: Metadata = {
-  title: '샛별 (학부모용) | 새벽별 파운데이션',
-  description: '자녀의 학습을 안전하고 효과적으로 지원하는 AI 학습 도구',
+  title: '샛별 (학부모용)',
+  description:
+    '자녀의 학습을 안전하고 효과적으로 지원하는 AI 학습 도구. 학습 현황 확인, 맞춤형 가이드, 안전한 학습 환경으로 자녀의 성장을 함께합니다.',
+  keywords: [
+    '학부모용 AI',
+    '자녀 학습 관리',
+    '학습 현황',
+    '학부모 지원',
+    '안전한 학습',
+    '가정 학습',
+  ],
+  openGraph: {
+    title: '샛별 (학부모용) | 새벽별 파운데이션',
+    description:
+      '자녀의 학습 여정을 함께하는 AI 도구. 안전하고 효과적인 학습 지원.',
+    url: 'https://dawnstarfoundation.org/work/parents',
+  },
 };
 
 export default function ParentsPage() {

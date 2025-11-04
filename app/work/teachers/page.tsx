@@ -12,8 +12,23 @@ import Button from '@/components/ui/Button';
 import TeacherFeatureShowcase from '@/components/showcase/TeacherFeatureShowcase';
 
 export const metadata: Metadata = {
-  title: '샛별 (선생님용) | 새벽별 파운데이션',
-  description: '선생님을 위한 무료 AI 교육 보조 도구',
+  title: '샛별 (선생님용)',
+  description:
+    '선생님을 위한 무료 AI 교육 보조 도구. 생활기록부 작성, 평가 및 피드백, 수업 설계를 지원하여 학생과의 의미 있는 시간을 늘려드립니다.',
+  keywords: [
+    '교사용 AI',
+    '생활기록부 작성',
+    '세특 작성',
+    '수업 설계',
+    '교사 지원',
+    '교육 AI 도구',
+  ],
+  openGraph: {
+    title: '샛별 (선생님용) | 새벽별 파운데이션',
+    description:
+      '행정 업무는 줄이고, 학생과의 시간은 늘리는 AI 교육 보조 도구.',
+    url: 'https://dawnstarfoundation.org/work/teachers',
+  },
 };
 
 export default function TeachersPage() {

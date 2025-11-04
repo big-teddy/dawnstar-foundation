@@ -141,10 +141,11 @@ export default function GetInvolvedSection() {
                 </div>
                 <Button
                   size="lg"
-                  className="bg-white text-purple-600 hover:bg-white/90 px-8 py-4 font-semibold shadow-xl"
+                  className="bg-white text-purple-600 hover:bg-white/90 px-8 py-4 font-semibold shadow-xl cursor-not-allowed opacity-75"
+                  disabled
                 >
                   <Mail className="mr-2 w-5 h-5" />
-                  이메일로 알림 받기
+                  이메일로 알림 받기 (준비 중)
                 </Button>
               </div>
             </motion.div>
@@ -221,10 +222,11 @@ export default function GetInvolvedSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-slate-300 text-slate-700 hover:bg-slate-100 px-8 py-4 font-semibold"
+                className="border-2 border-slate-300 text-slate-700 hover:bg-slate-100 px-8 py-4 font-semibold cursor-not-allowed opacity-75"
+                disabled
               >
                 <Mail className="mr-2 w-5 h-5" />
-                이메일로 알림 받기
+                이메일로 알림 받기 (준비 중)
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </motion.div>

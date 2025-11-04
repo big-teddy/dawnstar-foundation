@@ -162,16 +162,15 @@ export default function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
-            <Link href="/get-involved">
-              <Button
-                size="sm"
-                className="font-semibold bg-slate-900 text-white px-6 hover:bg-slate-800 transition-colors"
-                aria-label="새벽별 파운데이션 후원하기"
-              >
-                <Heart className="mr-2 w-4 h-4" />
-                후원하기
-              </Button>
-            </Link>
+            <Button
+              size="sm"
+              className="font-semibold bg-slate-900 text-white px-6 hover:bg-slate-800 transition-colors cursor-not-allowed opacity-75"
+              aria-label="새벽별 파운데이션 후원하기 (준비 중)"
+              disabled
+            >
+              <Heart className="mr-2 w-4 h-4" />
+              후원하기 (준비 중)
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -251,12 +250,10 @@ export default function Header() {
                 </div>
               ))}
               <div className="pt-4">
-                <Link href="/get-involved">
-                  <Button className="w-full font-semibold bg-slate-900 text-white hover:bg-slate-800" aria-label="새벽별 파운데이션 후원하기">
-                    <Heart className="mr-2 w-4 h-4" />
-                    후원하기
-                  </Button>
-                </Link>
+                <Button className="w-full font-semibold bg-slate-900 text-white hover:bg-slate-800 cursor-not-allowed opacity-75" aria-label="새벽별 파운데이션 후원하기 (준비 중)" disabled>
+                  <Heart className="mr-2 w-4 h-4" />
+                  후원하기 (준비 중)
+                </Button>
               </div>
             </div>
           </motion.div>

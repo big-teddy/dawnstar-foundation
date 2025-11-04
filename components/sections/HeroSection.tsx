@@ -422,11 +422,12 @@ export default function HeroSection() {
           >
             <Button
               size="lg"
-              className="group bg-white text-slate-900 hover:bg-slate-50 px-8 py-4 text-base font-semibold transition-all duration-300 shadow-lg"
-              aria-label="새벽별 파운데이션의 미션 알아보기"
+              className="bg-white text-slate-900 px-8 py-4 text-base font-semibold shadow-lg cursor-not-allowed opacity-75"
+              aria-label="새벽별 파운데이션의 미션 알아보기 (준비 중)"
+              disabled
             >
-              우리의 미션 알아보기
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              우리의 미션 알아보기 (준비 중)
+              <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </motion.div>
         </div>

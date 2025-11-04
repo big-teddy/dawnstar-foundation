@@ -94,16 +94,15 @@ export default function HowYouCanHelpSection() {
                 </p>
 
                 {/* CTA */}
-                <Link href="/get-involved">
-                  <Button
-                    variant="outline"
-                    className="w-full border-2 border-slate-200 text-slate-700 hover:border-slate-900 hover:text-slate-900 hover:bg-slate-50 transition-all group-hover:translate-x-1"
-                    aria-label={way.cta}
-                  >
-                    {way.cta}
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
+                <Button
+                  variant="outline"
+                  className="w-full border-2 border-slate-200 text-slate-700 hover:border-slate-900 hover:text-slate-900 hover:bg-slate-50 transition-all cursor-not-allowed opacity-60"
+                  aria-label={`${way.cta} (준비 중)`}
+                  disabled
+                >
+                  {way.cta}
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
               </motion.div>
             ))}
           </div>

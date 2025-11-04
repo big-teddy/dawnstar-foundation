@@ -57,26 +57,24 @@ export default function CTASection() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/get-involved">
-                  <Button
-                    size="lg"
-                    className="bg-white text-slate-900 hover:bg-slate-100 px-8 py-4"
-                    aria-label="새벽별 파운데이션 후원하기"
-                  >
-                    후원하기
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
-                <Link href="/get-involved">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-2 border-white/20 text-white hover:bg-white/10 px-8 py-4"
-                    aria-label="새벽별 파운데이션에 문의하기"
-                  >
-                    문의하기
-                  </Button>
-                </Link>
+                <Button
+                  size="lg"
+                  className="bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 cursor-not-allowed opacity-75"
+                  aria-label="새벽별 파운데이션 후원하기 (준비 중)"
+                  disabled
+                >
+                  후원하기 (준비 중)
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-white/20 text-white hover:bg-white/10 px-8 py-4 cursor-not-allowed opacity-75"
+                  aria-label="새벽별 파운데이션에 문의하기 (준비 중)"
+                  disabled
+                >
+                  문의하기 (준비 중)
+                </Button>
               </div>
             </div>
           </div>

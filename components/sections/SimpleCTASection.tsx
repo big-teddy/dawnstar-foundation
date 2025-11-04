@@ -31,27 +31,25 @@ export default function SimpleCTASection() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/get-involved">
-                  <Button
-                    size="lg"
-                    className="bg-white text-slate-900 hover:bg-slate-50 px-8 py-4 font-semibold shadow-lg"
-                    aria-label="새벽별 파운데이션 후원하기"
-                  >
-                    <Heart className="mr-2 w-5 h-5" />
-                    후원하기
-                  </Button>
-                </Link>
-                <Link href="/get-involved">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-2 border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 font-semibold"
-                    aria-label="새벽별 파운데이션에 문의하기"
-                  >
-                    문의하기
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
+                <Button
+                  size="lg"
+                  className="bg-white text-slate-900 hover:bg-slate-50 px-8 py-4 font-semibold shadow-lg cursor-not-allowed opacity-75"
+                  aria-label="새벽별 파운데이션 후원하기 (준비 중)"
+                  disabled
+                >
+                  <Heart className="mr-2 w-5 h-5" />
+                  후원하기 (준비 중)
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 font-semibold cursor-not-allowed opacity-75"
+                  aria-label="새벽별 파운데이션에 문의하기 (준비 중)"
+                  disabled
+                >
+                  문의하기 (준비 중)
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
               </div>
             </motion.div>
           </div>

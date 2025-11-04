@@ -8,6 +8,7 @@ import {
   useTransform,
 } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Button from '../ui/Button';
 import CursorGlow from '../effects/CursorGlow';
@@ -421,15 +422,16 @@ export default function HeroSection() {
             variants={itemVariants}
             className="flex justify-center pt-4"
           >
-            <Button
-              size="lg"
-              className="bg-white text-slate-900 px-8 py-4 text-base font-semibold shadow-lg cursor-not-allowed opacity-75"
-              aria-label="새벽별 파운데이션의 미션 알아보기 (준비 중)"
-              disabled
-            >
-              우리의 미션 알아보기 (준비 중)
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
+            <Link href="/about/mission">
+              <Button
+                size="lg"
+                className="group bg-white text-slate-900 hover:bg-slate-50 px-8 py-4 text-base font-semibold shadow-lg transition-all duration-300"
+                aria-label="새벽별 파운데이션의 미션 알아보기"
+              >
+                우리의 미션 알아보기
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </motion.div>

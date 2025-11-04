@@ -122,13 +122,16 @@ export default function WhyWeExistSection() {
               transition={{ delay: 0.9, duration: 0.6, ease: [0.28, 0.11, 0.32, 1] }}
               className="flex justify-center"
             >
-              <motion.button
-                className="inline-flex items-center gap-2 bg-[#1d1d1f] text-white px-6 py-3 rounded-full text-[17px] font-semibold opacity-75 cursor-not-allowed"
-                disabled
-              >
-                우리의 이야기 더 보기 (준비 중)
-                <ArrowRight className="w-5 h-5" />
-              </motion.button>
+              <Link href="/about/story">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group inline-flex items-center gap-2 bg-[#1d1d1f] text-white px-6 py-3 rounded-full text-[17px] font-semibold hover:bg-[#424245] transition-colors glow-on-hover"
+                >
+                  우리의 이야기 더 보기
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+              </Link>
             </motion.div>
           </motion.div>
         </div>

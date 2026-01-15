@@ -8,18 +8,13 @@ import {
   useTransform,
 } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import Link from 'next/link';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import Button from '../ui/Button';
 import CursorGlow from '../effects/CursorGlow';
+import ShootingStarsCanvas from '../effects/ShootingStarsCanvas';
 
 export default function HeroSection() {
   const ref = useRef<HTMLElement>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Mouse parallax
   const mouseX = useMotionValue(0);
@@ -39,40 +34,12 @@ export default function HeroSection() {
   const midgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
   const foregroundY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
 
-  // Hero content fades out earlier
+  // Hero content fades out as user scrolls
   const heroContentY = useTransform(scrollYProgress, [0, 0.3], ['0%', '10%']);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.2, 0.4], [1, 0.5, 0]);
 
-  // Background transitions from night to dawn
-  const backgroundColor = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.6, 0.85],
-    [
-      'rgb(15, 23, 42)',  // slate-900 (deep night)
-      'rgb(30, 41, 59)',  // slate-800
-      'rgb(71, 85, 105)', // slate-600 (early dawn)
-      'rgb(148, 163, 184)', // slate-400 (dawn)
-    ]
-  );
-
-  // Stars fade out as dawn breaks
-  const starsOpacity = useTransform(scrollYProgress, [0, 0.5, 0.8], [1, 0.6, 0]);
-
-  // Text color transitions from white (on dark bg) to dark (on light bg)
-  const textColor = useTransform(
-    scrollYProgress,
-    [0, 0.5, 0.85],
-    [
-      'rgb(255, 255, 255)',  // white (on dark background)
-      'rgb(255, 255, 255)',  // white
-      'rgb(15, 23, 42)',     // slate-900 (on light background)
-    ]
-  );
-
-  // Sun rises
-  const sunOpacity = useTransform(scrollYProgress, [0, 0.4, 0.7, 0.9], [0, 0, 0.4, 0.7]);
-  const sunY = useTransform(scrollYProgress, [0, 0.4, 1], ['120%', '120%', '30%']);
-  const sunScale = useTransform(scrollYProgress, [0.4, 0.7, 1], [0.8, 1, 1.2]);
+  // Stars fade out slightly as user scrolls to next section
+  const starsOpacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 0.8, 0.3]);
 
   // Removed Why We Exist from hero - it's now a separate section
 
@@ -96,124 +63,84 @@ export default function HeroSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.06,
-        delayChildren: 0,
+        staggerChildren: 0.08,
+        delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 24 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   };
 
-  // Seeded random number generator for consistent SSR/client rendering
-  const seededRandom = (seed: number) => {
-    const x = Math.sin(seed) * 10000;
-    return x - Math.floor(x);
-  };
+  // Optimized Starlight system - useMemo to prevent hydration mismatch
+  const backgroundStars = useMemo(() => Array.from({ length: 100 }, (_, i) => ({
+    id: `bg-${i}`,
+    size: 1 + Math.random() * 1.5,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    duration: 3 + Math.random() * 4,
+    delay: Math.random() * 8,
+    opacity: 0.2 + Math.random() * 0.3,
+    hasCross: false,
+  })), []);
 
-  // Optimized Starlight system - Reduced from 180 to 50 stars for performance
-  // Using seeded random to prevent hydration mismatch
-  const backgroundStars = useMemo(() => Array.from({ length: 25 }, (_, i) => {
-    const seed = i * 1000;
-    return {
-      id: `bg-${i}`,
-      size: 1 + seededRandom(seed) * 1.5,
-      x: seededRandom(seed + 1) * 100,
-      y: seededRandom(seed + 2) * 100,
-      duration: 3 + seededRandom(seed + 3) * 4,
-      delay: seededRandom(seed + 4) * 8,
-      opacity: 0.2 + seededRandom(seed + 5) * 0.3,
-      hasCross: false,
-    };
-  }), []);
+  const midgroundStars = useMemo(() => Array.from({ length: 50 }, (_, i) => ({
+    id: `mid-${i}`,
+    size: 1.5 + Math.random() * 2,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    duration: 2 + Math.random() * 3,
+    delay: Math.random() * 6,
+    opacity: 0.4 + Math.random() * 0.4,
+    hasCross: Math.random() > 0.85,
+  })), []);
 
-  const midgroundStars = useMemo(() => Array.from({ length: 15 }, (_, i) => {
-    const seed = i * 2000;
-    return {
-      id: `mid-${i}`,
-      size: 1.5 + seededRandom(seed) * 2,
-      x: seededRandom(seed + 1) * 100,
-      y: seededRandom(seed + 2) * 100,
-      duration: 2 + seededRandom(seed + 3) * 3,
-      delay: seededRandom(seed + 4) * 6,
-      opacity: 0.4 + seededRandom(seed + 5) * 0.4,
-      hasCross: seededRandom(seed + 6) > 0.85,
-    };
-  }), []);
-
-  const foregroundStars = useMemo(() => Array.from({ length: 10 }, (_, i) => {
-    const seed = i * 3000;
-    return {
-      id: `fg-${i}`,
-      size: 2 + seededRandom(seed) * 2.5,
-      x: seededRandom(seed + 1) * 100,
-      y: seededRandom(seed + 2) * 100,
-      duration: 1.5 + seededRandom(seed + 3) * 2.5,
-      delay: seededRandom(seed + 4) * 4,
-      opacity: 0.6 + seededRandom(seed + 5) * 0.4,
-      hasCross: seededRandom(seed + 6) > 0.5,
-    };
-  }), []);
+  const foregroundStars = useMemo(() => Array.from({ length: 30 }, (_, i) => ({
+    id: `fg-${i}`,
+    size: 2 + Math.random() * 2.5,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    duration: 1.5 + Math.random() * 2.5,
+    delay: Math.random() * 4,
+    opacity: 0.6 + Math.random() * 0.4,
+    hasCross: Math.random() > 0.5,
+  })), []);
 
 
   return (
-    <motion.section
+    <section
       ref={ref}
-      style={{ backgroundColor }}
-      className="relative min-h-screen lg:min-h-[200vh] overflow-hidden"
+      className="relative min-h-screen overflow-hidden bg-transparent"
     >
       {/* Cursor glow effect */}
       <CursorGlow />
 
-      {/* Animated gradient overlay */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 animate-gradient" />
-      </div>
-
-      {/* Dawn gradient overlay */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'linear-gradient(to bottom, transparent 0%, rgba(251, 146, 60, 0.1) 50%, rgba(252, 211, 77, 0.2) 100%)',
-          opacity: sunOpacity,
-        }}
-      />
-
-      {/* Rising sun */}
-      <motion.div
-        className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
-        style={{
-          y: sunY,
-          opacity: sunOpacity,
-          scale: sunScale,
-        }}
-      >
-        {/* Outer glow */}
-        <div className="absolute inset-0 w-96 h-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-radial from-amber-400/60 via-orange-400/40 to-transparent blur-3xl" />
-        {/* Middle glow */}
-        <div className="absolute inset-0 w-64 h-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-radial from-yellow-300/70 via-amber-300/50 to-transparent blur-2xl" />
-        {/* Core */}
-        <div className="absolute inset-0 w-32 h-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-radial from-yellow-200 via-amber-300 to-orange-400 blur-xl" />
+      {/* Shooting Stars - rare and elegant */}
+      <motion.div style={{ opacity: starsOpacity }}>
+        <ShootingStarsCanvas />
       </motion.div>
+
+      {/* Subtle animated gradient overlay - staying dark */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-indigo-500/10 animate-gradient" />
+      </div>
 
       {/* Optimized star system - Rolls-Royce Starlight inspired */}
       {/* Background stars - simple and performant */}
-      {mounted && (
-        <motion.div
-          className="absolute inset-0"
-          style={{ y: backgroundY, opacity: starsOpacity }}
-        >
-          {backgroundStars.map((star) => (
+      <motion.div
+        className="absolute inset-0"
+        style={{ y: backgroundY, opacity: starsOpacity }}
+      >
+        {backgroundStars.map((star) => (
           <motion.div
             key={star.id}
             className="absolute rounded-full bg-white"
@@ -237,14 +164,12 @@ export default function HeroSection() {
           />
         ))}
       </motion.div>
-      )}
 
       {/* Midground stars - enhanced glow */}
-      {mounted && (
-        <motion.div
-          className="absolute inset-0"
-          style={{ y: midgroundY, opacity: starsOpacity }}
-        >
+      <motion.div
+        className="absolute inset-0"
+        style={{ y: midgroundY, opacity: starsOpacity }}
+      >
         {midgroundStars.map((star) => (
           <div
             key={star.id}
@@ -299,14 +224,12 @@ export default function HeroSection() {
           </div>
         ))}
       </motion.div>
-      )}
 
       {/* Foreground stars - premium Starlight effect */}
-      {mounted && (
-        <motion.div
-          className="absolute inset-0"
-          style={{ y: foregroundY, opacity: starsOpacity }}
-        >
+      <motion.div
+        className="absolute inset-0"
+        style={{ y: foregroundY, opacity: starsOpacity }}
+      >
         {foregroundStars.map((star) => (
           <div
             key={star.id}
@@ -378,7 +301,6 @@ export default function HeroSection() {
           </div>
         ))}
       </motion.div>
-      )}
 
 
       {/* Hero Content - fades out as user scrolls */}
@@ -392,21 +314,17 @@ export default function HeroSection() {
         <div className="text-center space-y-8">
           {/* Main Heading */}
           <motion.div variants={itemVariants} className="space-y-6">
-            <motion.h1
-              style={{ color: textColor }}
-              className="text-5xl sm:text-6xl lg:text-8xl font-black leading-[1.1] tracking-tight"
-            >
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black text-white leading-[0.95] tracking-tighter">
               모든 아이의 잠재력이
               <br />
               빛나는 세상을 만듭니다
-            </motion.h1>
+            </h1>
           </motion.div>
 
           {/* Sub Heading */}
           <motion.p
             variants={itemVariants}
-            style={{ color: textColor }}
-            className="text-xl sm:text-2xl max-w-3xl mx-auto leading-relaxed font-light"
+            className="text-xl sm:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed font-light"
           >
             새벽별 파운데이션은 AI 기술을 통해
             <br className="hidden sm:block" />
@@ -422,16 +340,13 @@ export default function HeroSection() {
             variants={itemVariants}
             className="flex justify-center pt-4"
           >
-            <Link href="/about/mission">
-              <Button
-                size="lg"
-                className="group bg-white text-slate-900 hover:bg-slate-50 px-8 py-4 text-base font-semibold shadow-lg transition-all duration-300"
-                aria-label="새벽별 파운데이션의 미션 알아보기"
-              >
-                우리의 미션 알아보기
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
+            <Button
+              size="lg"
+              className="group bg-white text-slate-900 hover:bg-slate-50 px-8 py-4 text-base font-semibold transition-all duration-300 shadow-lg"
+            >
+              우리의 미션 알아보기
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
           </motion.div>
         </div>
       </motion.div>
@@ -456,6 +371,6 @@ export default function HeroSection() {
         </motion.div>
       </motion.div>
 
-    </motion.section>
+    </section>
   );
 }

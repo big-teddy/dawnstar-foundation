@@ -8,7 +8,7 @@ export default function WhyWeExistSection() {
   return (
     <>
       {/* Why We Exist - Compact & Impactful */}
-      <section className="bg-white py-32 relative overflow-hidden">
+      <section className="py-32 relative overflow-hidden">
         {/* Subtle gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-purple-50/30 pointer-events-none" />
 
@@ -57,7 +57,7 @@ export default function WhyWeExistSection() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.6, ease: [0.28, 0.11, 0.32, 1] }}
               >
-                <div className="info-card-fancy">
+                <div className="liquid-glass-card rounded-2xl p-6">
                   <div className="text-[32px] font-bold text-[#1d1d1f] mb-2">
                     26조 원
                   </div>
@@ -73,7 +73,7 @@ export default function WhyWeExistSection() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.6, duration: 0.6, ease: [0.28, 0.11, 0.32, 1] }}
               >
-                <div className="info-card-fancy">
+                <div className="liquid-glass-card rounded-2xl p-6">
                   <div className="text-[32px] font-bold text-[#1d1d1f] mb-2">
                     AI 시대
                   </div>
@@ -89,7 +89,7 @@ export default function WhyWeExistSection() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.7, duration: 0.6, ease: [0.28, 0.11, 0.32, 1] }}
               >
-                <div className="info-card-fancy">
+                <div className="liquid-glass-card rounded-2xl p-6">
                   <div className="text-[32px] font-bold text-[#1d1d1f] mb-2">
                     모든 학생
                   </div>

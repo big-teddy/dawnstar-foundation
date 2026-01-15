@@ -1,9 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, BookOpen, MessageSquare, Sparkles, Zap } from 'lucide-react';
+import { ArrowRight, BookOpen, MessageSquare, Sparkles, Zap, ExternalLink } from 'lucide-react';
 import ScrollReveal from '../animations/ScrollReveal';
-import Button from '../ui/Button';
 
 export default function FeaturedProjectSection() {
   const features = [
@@ -30,8 +29,11 @@ export default function FeaturedProjectSection() {
   ];
 
   return (
-    <section className="py-24 lg:py-32 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-24 lg:py-32 overflow-hidden">
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/30" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           {/* Header */}
           <div className="text-center mb-16">
@@ -40,10 +42,10 @@ export default function FeaturedProjectSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-6"
+              className="inline-flex items-center gap-2 liquid-glass-light px-4 py-2 rounded-full text-sm font-semibold mb-6"
             >
-              <Sparkles className="w-4 h-4" />
-              Featured Project
+              <Sparkles className="w-4 h-4 text-violet-600" />
+              <span className="text-violet-700">Featured Project</span>
             </motion.div>
 
             <motion.h2
@@ -79,13 +81,16 @@ export default function FeaturedProjectSection() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="relative bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl p-8 lg:p-12 shadow-2xl">
+              <div className="relative liquid-glass-light rounded-3xl p-8 lg:p-12 shadow-2xl border border-white/50">
+                {/* Inner glow effect */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-indigo-500/10 via-violet-500/5 to-purple-500/10" />
+
                 {/* Chat Interface Mockup */}
-                <div className="bg-white rounded-2xl p-6 space-y-4 shadow-xl">
+                <div className="relative liquid-glass-card rounded-2xl p-6 space-y-4">
                   {/* Chat messages */}
                   <div className="flex gap-3">
-                    <div className="w-8 h-8 bg-slate-300 rounded-full flex-shrink-0" />
-                    <div className="bg-slate-100 rounded-2xl rounded-tl-sm px-4 py-3 max-w-xs">
+                    <div className="w-8 h-8 bg-gradient-to-br from-slate-200 to-slate-300 rounded-full flex-shrink-0" />
+                    <div className="liquid-glass-light rounded-2xl rounded-tl-sm px-4 py-3 max-w-xs border border-slate-200/50">
                       <p className="text-sm text-slate-700">
                         이 문제를 어떻게 풀어야 할까요?
                       </p>
@@ -93,19 +98,19 @@ export default function FeaturedProjectSection() {
                   </div>
 
                   <div className="flex gap-3 justify-end">
-                    <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl rounded-tr-sm px-4 py-3 max-w-xs">
+                    <div className="bg-gradient-to-br from-indigo-500 to-violet-600 rounded-2xl rounded-tr-sm px-4 py-3 max-w-xs shadow-lg shadow-indigo-500/25">
                       <p className="text-sm text-white">
                         먼저 문제에서 어떤 정보가 주어졌는지 찾아볼까요?
                       </p>
                     </div>
-                    <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex-shrink-0 flex items-center justify-center">
+                    <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-full flex-shrink-0 flex items-center justify-center shadow-lg shadow-indigo-500/25">
                       <Sparkles className="w-4 h-4 text-white" />
                     </div>
                   </div>
 
                   <div className="flex gap-3">
-                    <div className="w-8 h-8 bg-slate-300 rounded-full flex-shrink-0" />
-                    <div className="bg-slate-100 rounded-2xl rounded-tl-sm px-4 py-3 max-w-xs">
+                    <div className="w-8 h-8 bg-gradient-to-br from-slate-200 to-slate-300 rounded-full flex-shrink-0" />
+                    <div className="liquid-glass-light rounded-2xl rounded-tl-sm px-4 py-3 max-w-xs border border-slate-200/50">
                       <p className="text-sm text-slate-700">
                         아, x=3이 주어졌네요!
                       </p>
@@ -114,7 +119,7 @@ export default function FeaturedProjectSection() {
                 </div>
 
                 {/* Floating elements */}
-                <div className="absolute -top-4 -right-4 bg-white rounded-xl px-4 py-2 shadow-lg">
+                <div className="absolute -top-4 -right-4 liquid-glass-light rounded-xl px-4 py-2 shadow-lg border border-white/50">
                   <p className="text-sm font-semibold text-slate-900">
                     24/7 학습 지원
                   </p>
@@ -139,8 +144,8 @@ export default function FeaturedProjectSection() {
                   transition={{ duration: 0.5, delay: 0.1 * index }}
                   className="flex gap-4"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
-                    <feature.icon className="w-6 h-6 text-purple-600" />
+                  <div className="flex-shrink-0 w-12 h-12 liquid-glass-light rounded-xl flex items-center justify-center border border-violet-200/50 shadow-sm">
+                    <feature.icon className="w-6 h-6 text-violet-600" />
                   </div>
                   <div>
                     <h3 className="font-bold text-slate-900 mb-1">
@@ -154,13 +159,15 @@ export default function FeaturedProjectSection() {
               ))}
 
               <div className="pt-4">
-                <Button
-                  size="lg"
-                  className="group button-gradient text-white px-8 py-4 shadow-lg hover:shadow-xl transition-all"
+                <a
+                  href="https://korean-khanmigo.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all font-semibold"
                 >
-                  샛별 자세히 보기
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                  샛별 체험하기
+                  <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
               </div>
             </motion.div>
           </div>
@@ -171,11 +178,11 @@ export default function FeaturedProjectSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mt-16 text-center bg-blue-50 rounded-2xl p-6"
+            className="mt-16 text-center liquid-glass-light rounded-2xl p-6 border border-indigo-100/50"
           >
             <p className="text-slate-700">
-              <strong className="text-blue-600">현재 개발 중</strong>이며,{' '}
-              <strong>2025년 중 첫 베타 버전</strong>을 선보일 예정입니다
+              <strong className="text-indigo-600">현재 베타 버전 운영 중</strong>이며,{' '}
+              <strong>지속적인 개선과 업데이트</strong>가 진행되고 있습니다
             </p>
           </motion.div>
         </ScrollReveal>

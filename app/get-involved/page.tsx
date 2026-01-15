@@ -1,192 +1,217 @@
-import { Metadata } from 'next';
-import { ArrowRight, Heart, Handshake } from 'lucide-react';
-import Button from '@/components/ui/Button';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Get Involved | 새벽별 파운데이션',
-  description: '함께하기',
-};
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { Heart, Handshake, GraduationCap, Building2, Cpu, ArrowRight, Sparkles } from 'lucide-react';
+
+const partnerTypes = [
+  { icon: GraduationCap, title: '교육 전문가 & 연구자', description: '공동 연구 프로젝트, 제품 개발 자문, 교육 효과성 검증' },
+  { icon: Building2, title: '교육청 & 학교', description: '파일럿 프로그램, 교사 연수 협력, 학생 학습 지원' },
+  { icon: Heart, title: '기업 후원', description: 'CSR 프로그램, 재정 후원, 임직원 봉사' },
+  { icon: Cpu, title: '기술 파트너', description: '기술 인프라, 오픈소스 협력, 클라우드 지원' },
+];
 
 export default function GetInvolvedPage() {
   return (
-    <main className="min-h-screen bg-white pt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-5xl font-bold text-slate-900 mb-6">
-          Get Involved
-        </h1>
-        <p className="text-2xl text-slate-600 mb-16">함께하기</p>
+    <main className="min-h-screen aurora-bg aurora-start-pink">
+      {/* Fixed Aurora Background */}
+      <div className="aurora-container">
+        <div className="aurora-gradient" />
+      </div>
+      <div className="aurora-overlay" />
 
-        {/* Opening */}
-        <div className="max-w-4xl mb-20">
-          <p className="text-2xl text-slate-700 font-medium leading-relaxed mb-6">
-            새벽별과 함께 교육의 미래를 만들어가세요
-          </p>
-          <p className="text-xl text-slate-600 leading-relaxed">
-            우리는 혼자서는 갈 수 없는 길을 함께 가고자 합니다. 교육의 본질을
-            되찾고, 모든 아이가 자신의 잠재력을 발견할 수 있는 세상을 만드는
-            일. 이 여정에 여러분을 초대합니다.
-          </p>
-        </div>
+      {/* Content Layer */}
+      <div className="aurora-content">
+        {/* Hero Section - Minimal */}
+        <section className="relative min-h-[70vh] flex items-center justify-center">
 
-        {/* Support Us Section */}
-        <section id="support" className="mb-32">
-          <div className="bg-slate-50 border border-slate-200 rounded-3xl p-12">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center">
-                <Heart className="w-8 h-8 text-white" />
-              </div>
-              <h2 className="text-4xl font-bold text-slate-900">후원하기</h2>
-            </div>
-
-            <p className="text-2xl text-slate-700 font-medium mb-8">
-              여러분의 후원이 평등한 교육을 만듭니다
-            </p>
-
-            <div className="prose prose-lg max-w-none text-slate-600 mb-8 space-y-4">
-              <p>
-                새벽별 파운데이션은 투명하게 운영되는 비영리 공익법인입니다.
+          <div className="relative container-apple text-center py-32">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <p className="text-overline text-indigo-600 mb-6">
+                Get Involved
               </p>
-              <p className="font-semibold text-slate-900">
-                여러분의 후원은 다음과 같이 사용됩니다:
-              </p>
-              <ul className="space-y-2">
-                <li>
-                  경제적 어려움이 있는 학생들을 위한 무료 학습 도구 제공
-                </li>
-                <li>AI 교육 기술 연구 및 개발</li>
-                <li>교사 지원 프로그램 운영</li>
-                <li>교육 격차 해소를 위한 정책 연구</li>
-              </ul>
-              <p className="text-sm text-slate-500 italic">
-                모든 후원금 사용 내역은 투명하게 공개됩니다.
+
+              <h1 className="text-display text-slate-900 mb-8">
+                <span className="gradient-text">함께</span> 만들어가는
                 <br />
-                기부금 세액 공제 혜택을 받을 수 있습니다.
-              </p>
-            </div>
+                교육의 미래
+              </h1>
 
-            <div className="bg-white border border-slate-200 rounded-2xl p-8">
-              <p className="text-lg text-slate-700 font-semibold mb-4">
-                준비 중입니다
+              <p className="text-body-lg text-slate-500 max-w-2xl mx-auto">
+                우리는 혼자서는 갈 수 없는 길을 함께 가고자 합니다
               </p>
-              <p className="text-slate-600 mb-6">
-                후원 시스템을 준비하고 있습니다. 곧 만나요!
-              </p>
-              <Button
-                className="bg-slate-900 text-white hover:bg-slate-800"
-                disabled
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Support Section */}
+        <section className="section-content">
+          <div className="container-apple">
+            <div className="max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="p-12 md:p-16 rounded-3xl liquid-glass-card"
               >
-                이메일로 알림 받기 (곧 출시)
-              </Button>
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-14 h-14 rounded-2xl liquid-glass-icon bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">
+                    <Heart className="w-7 h-7 text-white" />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl md:text-3xl font-bold text-slate-900 liquid-text-shadow">후원하기</h2>
+                    <p className="text-slate-500">여러분의 후원이 평등한 교육을 만듭니다</p>
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-8 mb-10">
+                  <div>
+                    <h3 className="font-semibold text-slate-900 mb-4 liquid-text-shadow">후원금 사용처</h3>
+                    <ul className="space-y-3 text-slate-600">
+                      {[
+                        '경제적 어려움이 있는 학생들을 위한 무료 학습 도구',
+                        'AI 교육 기술 연구 및 개발',
+                        '교사 지원 프로그램 운영',
+                        '교육 격차 해소를 위한 정책 연구',
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="flex flex-col justify-center items-center text-center p-8 rounded-2xl liquid-glass-light">
+                    <Sparkles className="w-10 h-10 text-indigo-400 mb-4" />
+                    <p className="text-slate-500 mb-6">
+                      후원 시스템을 준비하고 있습니다.
+                      <br />
+                      출시되면 알려드릴게요!
+                    </p>
+                    <div className="relative">
+                      <span className="absolute -top-2 -right-2 px-2 py-0.5 text-xs font-bold text-white bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full">Coming Soon</span>
+                      <button
+                        className="px-6 py-3 rounded-xl bg-white/40 backdrop-blur-sm border border-white/40 text-slate-400 cursor-not-allowed shadow-inner"
+                        disabled
+                      >
+                        후원 시스템 준비 중
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Partner With Us Section */}
-        <section id="partner" className="mb-32">
-          <div className="bg-slate-50 border border-slate-200 rounded-3xl p-12">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center">
-                <Handshake className="w-8 h-8 text-white" />
-              </div>
-              <h2 className="text-4xl font-bold text-slate-900">파트너십</h2>
-            </div>
+        {/* Partnership Section */}
+        <section className="py-24 md:py-32 liquid-section-bg">
+          <div className="container-apple">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <p className="text-sm font-medium tracking-widest text-indigo-600 uppercase mb-4">
+                Partnership
+              </p>
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">
+                파트너십
+              </h2>
+            </motion.div>
 
-            <p className="text-2xl text-slate-700 font-medium mb-12">
-              함께 교육의 미래를 만들어갈 파트너를 찾습니다
-            </p>
-
-            <div className="space-y-12">
-              {/* Partner Types */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="bg-white border border-slate-200 rounded-2xl p-8">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                    교육 전문가 & 연구자
-                  </h3>
-                  <p className="text-slate-600 mb-6">
-                    교육학, 교육공학, 인지심리학, AI 등 다양한 분야의 전문가와
-                    함께 연구하고 배우고 싶습니다.
-                  </p>
-                  <ul className="space-y-2 text-slate-600">
-                    <li>• 공동 연구 프로젝트</li>
-                    <li>• 제품 개발 자문</li>
-                    <li>• 교육 효과성 검증</li>
-                    <li>• 논문 및 연구 결과 공유</li>
-                  </ul>
-                </div>
-
-                <div className="bg-white border border-slate-200 rounded-2xl p-8">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                    교육청 & 학교
-                  </h3>
-                  <p className="text-slate-600 mb-6">
-                    현장의 목소리를 듣고, 실제로 도움이 되는 솔루션을 만들고
-                    싶습니다.
-                  </p>
-                  <ul className="space-y-2 text-slate-600">
-                    <li>• 파일럿 프로그램 운영</li>
-                    <li>• 교사 연수 협력</li>
-                    <li>• 학생 학습 지원</li>
-                    <li>• 피드백 기반 제품 개선</li>
-                  </ul>
-                </div>
-
-                <div className="bg-white border border-slate-200 rounded-2xl p-8">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                    기업 후원
-                  </h3>
-                  <p className="text-slate-600 mb-6">
-                    교육 평등이라는 가치에 공감하는 기업과 함께 지속 가능한
-                    변화를 만들어가고 싶습니다.
-                  </p>
-                  <ul className="space-y-2 text-slate-600">
-                    <li>• CSR 프로그램 협력</li>
-                    <li>• 재정 후원</li>
-                    <li>• 기술 인프라 지원</li>
-                    <li>• 임직원 봉사 프로그램</li>
-                  </ul>
-                </div>
-
-                <div className="bg-white border border-slate-200 rounded-2xl p-8">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                    기술 파트너
-                  </h3>
-                  <p className="text-slate-600 mb-6">
-                    AI, 교육 플랫폼, 데이터 분석 등 기술 협력을 통해 더 나은
-                    제품을 만들고 싶습니다.
-                  </p>
-                  <ul className="space-y-2 text-slate-600">
-                    <li>• 기술 인프라 협력</li>
-                    <li>• 오픈소스 프로젝트 공동 개발</li>
-                    <li>• 기술 자문 및 멘토링</li>
-                    <li>• 클라우드 및 서버 지원</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="bg-white border border-slate-200 rounded-2xl p-8">
-                <p className="text-lg text-slate-700 font-semibold mb-4">
-                  준비 중입니다
-                </p>
-                <p className="text-slate-600 mb-6">
-                  파트너십 문의 시스템을 준비하고 있습니다. 곧 만나요!
-                </p>
-                <Button
-                  className="bg-slate-900 text-white hover:bg-slate-800"
-                  disabled
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {partnerTypes.map((partner, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group p-8 rounded-2xl liquid-glass-card"
                 >
-                  이메일로 알림 받기 (곧 출시)
-                </Button>
-              </div>
+                  <div className="w-14 h-14 rounded-xl liquid-glass-icon flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+                    <partner.icon className="w-7 h-7 text-indigo-600" />
+                  </div>
+
+                  <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors liquid-text-shadow">
+                    {partner.title}
+                  </h3>
+
+                  <p className="text-slate-500 leading-relaxed">
+                    {partner.description}
+                  </p>
+                </motion.div>
+              ))}
             </div>
+
+            {/* Contact */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-md mx-auto mt-16 text-center"
+            >
+              <div className="p-8 rounded-2xl liquid-glass-card">
+                <Handshake className="w-10 h-10 text-indigo-400 mx-auto mb-4" />
+                <p className="text-slate-500 mb-6">
+                  파트너쉽 문의 시스템을 준비하고 있습니다
+                </p>
+                <div className="relative">
+                  <span className="absolute -top-2 -right-2 px-2 py-0.5 text-xs font-bold text-white bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full">Coming Soon</span>
+                  <button
+                    className="px-6 py-3 rounded-xl bg-white/40 backdrop-blur-sm border border-white/40 text-slate-400 cursor-not-allowed shadow-inner"
+                    disabled
+                  >
+                    파트너십 문의 준비 중
+                  </button>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </section>
 
-        {/* Bottom Note */}
-        <div className="text-center">
-          <p className="text-lg text-slate-600">
-            모든 후원금 사용 내역은 투명하게 공개됩니다
-          </p>
-        </div>
+        {/* CTA Section - Rounded Box */}
+        <section className="py-24">
+          <div className="container-apple">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="relative overflow-hidden rounded-3xl py-16 md:py-20 px-8 md:px-16"
+            >
+              {/* Dark gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/15 rounded-full blur-[100px]" />
+
+              <div className="relative text-center">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-6">
+                  모든 아이가 빛날 수 있는 세상
+                  <br />
+                  함께 만들어가요
+                </h2>
+
+                <p className="text-lg text-slate-400 font-light max-w-2xl mx-auto mb-10">
+                  여러분의 참여가 변화의 시작입니다.
+                </p>
+
+                <Link
+                  href="/about/story"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-900 font-semibold rounded-full hover:bg-white/90 transition-all"
+                >
+                  우리의 이야기 읽기
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </section>
       </div>
     </main>
   );

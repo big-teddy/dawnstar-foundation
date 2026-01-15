@@ -32,8 +32,11 @@ export default function HowYouCanHelpSection() {
   ];
 
   return (
-    <section className="py-24 lg:py-32 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 lg:py-32 relative overflow-hidden">
+      {/* Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-indigo-50/30 to-violet-50/20" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
@@ -49,19 +52,19 @@ export default function HowYouCanHelpSection() {
           {ways.map((way) => (
             <div
               key={way.title}
-              className="relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow border border-slate-200"
+              className="relative liquid-glass-card rounded-3xl p-8"
             >
               {/* Badge */}
               {way.badge && (
-                <div className="absolute top-6 right-6 bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-semibold">
+                <div className="absolute top-6 right-6 bg-indigo-100/80 text-indigo-700 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm">
                   {way.badge}
                 </div>
               )}
 
               {/* Icon */}
               <div className="mb-6">
-                <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center">
-                  <way.icon className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 liquid-glass-icon rounded-2xl flex items-center justify-center">
+                  <way.icon className="w-8 h-8 text-indigo-600" />
                 </div>
               </div>
 
@@ -76,7 +79,7 @@ export default function HowYouCanHelpSection() {
               {/* CTA */}
               <Button
                 variant="outline"
-                className="w-full border-2 border-slate-200 text-slate-700 hover:border-slate-900 hover:text-slate-900 hover:bg-slate-50 transition-all cursor-not-allowed opacity-60"
+                className="w-full border-2 border-indigo-200 text-indigo-700 hover:border-indigo-400 hover:bg-indigo-50/50 transition-all cursor-not-allowed opacity-60"
                 aria-label={`${way.cta} (준비 중)`}
                 disabled
               >

@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header';
 import ScrollToTop from '@/components/ScrollToTop';
 import StructuredData from '@/components/StructuredData';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import SkyBackground from '@/components/effects/SkyBackground';
 import './globals.css';
 
 const notoSansKR = Noto_Sans_KR({
@@ -101,6 +102,7 @@ export default function RootLayout({
         <GoogleAnalytics />
       </head>
       <body className={notoSansKR.className}>
+        <SkyBackground />
         <ScrollToTop />
         <Header />
         <main>{children}</main>

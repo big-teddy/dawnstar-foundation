@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { Handshake, Lightbulb, Megaphone, Wrench } from 'lucide-react';
 import ScrollReveal from '../animations/ScrollReveal';
-import HoverCard from '../animations/HoverCard';
 
 export default function MissionInActionSection() {
   const actions = [
@@ -38,8 +37,12 @@ export default function MissionInActionSection() {
   ];
 
   return (
-    <section className="py-24 lg:py-32 bg-gradient-to-b from-slate-100 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-24 lg:py-32 overflow-hidden">
+      {/* Subtle decorative gradient blobs */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-100/40 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-violet-100/40 rounded-full blur-3xl" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           {/* Header */}
           <div className="text-center mb-16">
@@ -69,27 +72,30 @@ export default function MissionInActionSection() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group"
               >
-                <HoverCard className="relative bg-white rounded-2xl p-8 border border-slate-200 hover:border-slate-300 hover:shadow-xl transition-all duration-300 h-full">
+                <div className="relative liquid-glass-card rounded-2xl p-8 h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  {/* Hover gradient overlay */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-indigo-500/5 via-transparent to-violet-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
                   {/* Icon */}
-                  <div className="mb-6">
-                    <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <action.icon className="w-8 h-8 text-white" />
+                  <div className="relative mb-6">
+                    <div className="liquid-glass-icon w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <action.icon className="w-8 h-8 text-indigo-600" />
                     </div>
                   </div>
 
                   {/* Content */}
-                  <div>
+                  <div className="relative">
                     <h3 className="text-lg font-bold text-slate-900 mb-1">
                       {action.title}
                     </h3>
-                    <p className="text-sm font-medium text-slate-600 mb-3">
+                    <p className="text-sm font-medium text-indigo-600 mb-3">
                       {action.subtitle}
                     </p>
                     <p className="text-slate-600 leading-relaxed">
                       {action.description}
                     </p>
                   </div>
-                </HoverCard>
+                </div>
               </motion.div>
             ))}
           </div>

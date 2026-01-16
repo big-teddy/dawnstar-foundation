@@ -15,6 +15,7 @@ const NAVIGATION_ITEMS = [
       { label: '우리의 이야기', subtitle: '새벽별이 시작된 이유', href: '/about/story' },
       { label: '새벽별 선언문', subtitle: '우리가 믿는 10가지 원칙', href: '/about/manifesto' },
       { label: '우리의 약속', subtitle: '말이 아닌 행동으로 증명합니다', href: '/about/commitments' },
+      { label: '함께하는 사람들', subtitle: '교육의 가파른 길을 비추는 이들', href: '/about/people' },
     ],
   },
   {
@@ -26,8 +27,7 @@ const NAVIGATION_ITEMS = [
   {
     label: '함께하기',
     dropdown: [
-      { label: '후원하기', subtitle: '교육 평등을 위한 여정에 함께해주세요', href: '/get-involved#support' },
-      { label: '파트너십', subtitle: '기업, 학교와 함께하는 변화', href: '/get-involved#partner' },
+      { label: '참여하기', subtitle: '교육 평등을 위한 여정에 함께해주세요', href: '/get-involved' },
     ],
   },
 ];

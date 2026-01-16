@@ -40,14 +40,14 @@ export default function ShootingStarsCanvas({ opacity = 1 }: ShootingStarsCanvas
         // Spawn a new shooting star - RARE and SLOW
         const spawnShootingStar = () => {
             const now = Date.now();
-            // Minimum 5-10 seconds between shooting stars
-            const minInterval = 5000 + Math.random() * 5000;
+            // Minimum 2-5 seconds between shooting stars (Increased frequency)
+            const minInterval = 2000 + Math.random() * 3000;
 
             if (now - lastSpawnTimeRef.current < minInterval) return;
             if (shootingStarsRef.current.length > 0) return; // Only one at a time
 
-            // 0.5% chance per frame (very rare)
-            if (Math.random() > 0.005) return;
+            // 1.5% chance per frame (more frequent)
+            if (Math.random() > 0.015) return;
 
             lastSpawnTimeRef.current = now;
 

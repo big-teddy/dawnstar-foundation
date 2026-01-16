@@ -15,7 +15,6 @@ const NAVIGATION_ITEMS = [
       { label: '우리의 이야기', subtitle: '새벽별이 시작된 이유', href: '/about/story' },
       { label: '새벽별 선언문', subtitle: '우리가 믿는 10가지 원칙', href: '/about/manifesto' },
       { label: '우리의 약속', subtitle: '말이 아닌 행동으로 증명합니다', href: '/about/commitments' },
-      { label: '함께하는 사람들', subtitle: '교육의 변화를 만들어가는 이들', href: '/about/people' },
     ],
   },
   {

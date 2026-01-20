@@ -2,34 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, BookOpen, Lightbulb, Rocket, Heart } from 'lucide-react';
-
-const timeline = [
-  {
-    year: '2024',
-    title: '질문이 시작되다',
-    content: '왜 어떤 아이들은 최고의 교육을 받고, 어떤 아이들은 그 기회조차 갖지 못할까? 이 질문에서 모든 것이 시작되었습니다.',
-    icon: BookOpen,
-  },
-  {
-    year: '2024',
-    title: '문제를 직시하다',
-    content: '한국은 연간 26조 원을 사교육에 지출합니다. 부모의 소득이 아이의 교육 기회를 결정하는 현실을 바꾸고자 했습니다.',
-    icon: Lightbulb,
-  },
-  {
-    year: '2025',
-    title: '새벽별의 탄생',
-    content: 'AI 기술이 답이 될 수 있다는 확신으로 새벽별 파운데이션이 설립되었습니다.',
-    icon: Rocket,
-  },
-  {
-    year: '미래',
-    title: '함께 만드는 내일',
-    content: '교육의 민주화를 향한 여정, 함께 걸어가실 분들을 기다립니다.',
-    icon: Heart,
-  },
-];
+import { ArrowRight, Sparkles, Users, Building2, Handshake, Quote } from 'lucide-react';
 
 export default function StoryPage() {
   return (
@@ -42,9 +15,10 @@ export default function StoryPage() {
 
       {/* Content Layer */}
       <div className="aurora-content">
-        {/* Hero Section - Enhanced */}
-        <section className="relative min-h-[70vh] flex items-center justify-center">
-
+        {/* =========================================
+            Section 1: Hero
+            ========================================= */}
+        <section className="relative min-h-[80vh] flex items-center justify-center">
           <div className="relative container-apple text-center py-32">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -56,83 +30,74 @@ export default function StoryPage() {
               </p>
 
               <h1 className="text-display text-slate-900 mb-8">
-                우리는 왜
+                "나는 미래 세대에게
                 <br />
-                <span className="gradient-text">시작했나요</span>
+                <span className="gradient-text">어떤 유산을 물려줄 것인가?"</span>
               </h1>
 
-              <p className="text-body-lg text-slate-600 max-w-2xl mx-auto">
-                한 아이의 잠재력이 태어난 환경에 의해 결정되는 세상.
-                <br />
-                우리는 그 불공평한 현실에 질문을 던졌습니다.
+              <p className="text-body-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                새벽별 파운데이션은 청소년 시절 스스로 던진 이 질문에서 시작되었습니다.
+                <br className="hidden sm:block" />
+                제도권 안팎의 독특한 교육을 경험하며 마주한 한 사람의 소명이자,
+                <br className="hidden sm:block" />
+                교육의 본질을 되찾아 미래세대에게 전하고자 하는 여정입니다.
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* The Question - Large Quote (Typography-driven, no box) */}
-        <section className="py-20">
+        {/* =========================================
+            Section 2: Narrative
+            ========================================= */}
+        <section className="py-24">
           <div className="container-apple">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="max-w-5xl mx-auto text-center"
+              className="max-w-4xl mx-auto"
             >
-              <blockquote className="hero-statement-large text-slate-900">
-                "왜 어떤 아이들은 최고의 교육을 받고,
+              <p className="text-sm font-medium tracking-widest text-indigo-600 uppercase mb-6">
+                The Journey
+              </p>
+
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-8">
+                교육은 아이들의 잠재력을
                 <br />
-                <span className="gradient-text">어떤 아이들은 그 기회조차 갖지 못할까?</span>"
-              </blockquote>
-            </motion.div>
-          </div>
-        </section>
+                이끌어내는 과정
+              </h2>
 
-        {/* The Problem - Stats as Heroes (Content-first, minimal containers) */}
-        <section className="py-20">
-          <div className="container-apple">
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-            >
-              <div className="text-center mb-16">
-                <p className="text-sm font-medium tracking-widest text-indigo-600 uppercase mb-4">
-                  The Problem
+              <div className="space-y-6 text-lg text-slate-600 leading-relaxed">
+                <p>
+                  초등학교 5학년, 저는 학교를 떠나 한국의 1세대 홈스쿨러가 되었습니다.
+                  이후 미국에서 대학 생활을 하며 한국의 공교육과 대안 교육,
+                  그리고 글로벌 교육의 현장을 두루 경험하며 배움이 가진 다양한 이면을 깊이 있게 마주했습니다.
                 </p>
-                <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">
-                  문제는 명확합니다
-                </h2>
-              </div>
 
-              <div className="grid md:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto">
-                {[
-                  { number: '26조 원', label: '한국 연간 사교육비' },
-                  { number: '43만 원', label: '가구당 월평균 지출' },
-                  { number: '2배', label: '소득별 교육 격차' },
-                ].map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.15 }}
-                    className="text-center"
-                  >
-                    <div className="stat-hero gradient-text stat-glow whitespace-nowrap">
-                      {stat.number}
-                    </div>
-                    <p className="stat-hero-label">{stat.label}</p>
-                  </motion.div>
-                ))}
+                <p>
+                  서로 다른 교육 환경의 경계를 넘나들며 제가 확인한 본질은 단 하나였습니다.
+                </p>
+
+                <blockquote className="relative pl-6 border-l-4 border-indigo-500 py-2">
+                  <p className="text-xl md:text-2xl font-semibold text-slate-900">
+                    교육은 아이 안의 잠재력을 세상으로 이끌어내고 실현하도록 돕는
+                    <span className="gradient-text"> 가장 순수한 과정</span>이어야 한다는 것.
+                  </p>
+                </blockquote>
+
+                <p>
+                  교육은 결코 경쟁의 도구나 사회적 지위를 얻기 위한 수단이 되어서는 안 됩니다.
+                </p>
               </div>
             </motion.div>
           </div>
         </section>
 
-        {/* Timeline - Subtle glass (toned down) */}
-        <section className="py-20">
+        {/* =========================================
+            Section 3: Insight
+            ========================================= */}
+        <section className="py-24">
           <div className="container-apple">
             <motion.div
               initial={{ opacity: 0 }}
@@ -140,55 +105,213 @@ export default function StoryPage() {
               viewport={{ once: true }}
               className="p-10 md:p-16 rounded-3xl subtle-glass-card"
             >
-              <div className="text-center mb-12">
-                <p className="text-sm font-medium tracking-widest text-indigo-600 uppercase mb-4">
-                  Timeline
+              <div className="max-w-4xl mx-auto">
+                <p className="text-sm font-medium tracking-widest text-indigo-600 uppercase mb-6">
+                  The Insight
                 </p>
-                <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">
-                  우리의 여정
+
+                <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-8">
+                  낡은 관성을 허무는
+                  <br />
+                  <span className="gradient-text">혁신의 열쇠, AI</span>
                 </h2>
-              </div>
 
-              <div className="max-w-2xl mx-auto">
-                {timeline.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-50px' }}
-                    transition={{ delay: index * 0.1 }}
-                    className="relative pl-12 pb-10 last:pb-0"
-                  >
-                    {/* Vertical line */}
-                    {index < timeline.length - 1 && (
-                      <div className="absolute left-[15px] top-8 w-px h-full bg-gradient-to-b from-indigo-300 to-transparent" />
-                    )}
+                <div className="space-y-6 text-lg text-slate-600 leading-relaxed">
+                  <p>
+                    세상의 기술이 정점을 향해 질주하는 동안에도 교육 현장은
+                    200년 넘게 고착된 낡은 시스템에 갇혀 있습니다.
+                  </p>
 
-                    {/* Icon */}
-                    <div className="absolute left-0 top-0 w-8 h-8 rounded-full flex items-center justify-center bg-gradient-to-br from-indigo-500 to-violet-600">
-                      <item.icon className="w-4 h-4 text-white" />
-                    </div>
+                  <p>
+                    우리는 이 시스템을 혁신하기 위한 첫 단추로 <strong className="text-slate-900">AI 기술에 주목했습니다.</strong>
+                  </p>
 
-                    {/* Content */}
-                    <div>
-                      <span className="inline-block px-3 py-1 text-xs font-bold text-indigo-600 bg-indigo-50 rounded-full mb-3">
-                        {item.year}
-                      </span>
-                      <h3 className="text-xl font-bold text-slate-900 mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-slate-500 leading-relaxed">
-                        {item.content}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
+                  <p>
+                    AI는 단순히 지식을 전달하는 도구가 아니라,
+                    모든 학생이 자신만의 속도로 빛날 수 있게 돕는 가장 강력한 조력자가 될 것입니다.
+                    이를 통해 기존 시스템을 효과적으로 변화시키고
+                    더 나아가 AI가 해결할 수 없는 인간의 고유한 영역과의 조화를 만들어 갈 것입니다.
+                  </p>
+                </div>
               </div>
             </motion.div>
           </div>
         </section>
 
-        {/* CTA Section - Rounded Box */}
+        {/* =========================================
+            Section 4: Legacy
+            ========================================= */}
+        <section className="py-24">
+          <div className="container-apple">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="max-w-4xl mx-auto text-center"
+            >
+              <p className="text-sm font-medium tracking-widest text-indigo-600 uppercase mb-6">
+                The Legacy
+              </p>
+
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-8">
+                우리가 미래 세대에게
+                <br />
+                물려줄 진정한 유산
+              </h2>
+
+              <p className="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
+                아이들이 환경에 구애받지 않고 각자의 잠재력대로 살아갈 수 있는 세상.
+                진정한 교육의 목적과 본질이 실현되는 것이 우리가 다음 세대에게 주고 싶은 유산이자,
+                새벽별 파운데이션이 존재하는 이유입니다.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* =========================================
+            Section 5: Governance (Our People)
+            ========================================= */}
+        <section className="py-24 bg-gradient-to-b from-transparent via-slate-50/50 to-transparent">
+          <div className="container-apple">
+            {/* Section Header */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <p className="text-sm font-medium tracking-widest text-indigo-600 uppercase mb-4">
+                Our People
+              </p>
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6">
+                함께 변화를 만드는 사람들
+              </h2>
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                새벽별 파운데이션은 교육과 기술, 사회적 가치를 아우르는 전문가들과 함께 성장합니다.
+              </p>
+            </motion.div>
+
+            {/* 5-1. Founder */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-16"
+            >
+              <div className="max-w-4xl mx-auto">
+                <div className="p-8 md:p-12 rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 relative overflow-hidden">
+                  {/* Decorative glow */}
+                  <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-indigo-500/20 rounded-full blur-[100px]" />
+
+                  <div className="relative">
+                    <p className="text-sm font-medium tracking-widest text-indigo-400 uppercase mb-4">
+                      창업자 · Founder
+                    </p>
+
+                    <div className="flex flex-col md:flex-row gap-8 items-start">
+                      {/* Avatar placeholder */}
+                      <div className="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center flex-shrink-0">
+                        <Sparkles className="w-10 h-10 md:w-12 md:h-12 text-white" />
+                      </div>
+
+                      <div className="flex-1">
+                        <p className="text-white/80 leading-relaxed mb-6">
+                          1세대 홈스쿨러 출신의 교육 혁신가.
+                          펜실베이니아 주립대(PSU) 재학 중 비영리 법인 이사 및 창업가로 활동하며
+                          교육의 본질을 탐구해 왔습니다.
+                        </p>
+
+                        <blockquote className="relative pl-6 border-l-2 border-indigo-400">
+                          <Quote className="absolute -left-3 -top-2 w-6 h-6 text-indigo-400" />
+                          <p className="text-lg md:text-xl text-white font-medium italic">
+                            "제가 걸어온 길이 정답은 아닙니다.
+                            다만, 다른 길도 있다는 것을 보여주고 싶습니다.
+                            모든 아이가 자신만의 길을 찾을 수 있도록."
+                          </p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 5-2, 5-3, 5-4 Grid */}
+            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {/* 5-2. Board & Advisors */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="p-8 rounded-2xl subtle-glass-card"
+              >
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center mb-4">
+                  <Users className="w-6 h-6 text-white" />
+                </div>
+                <p className="text-sm font-medium tracking-widest text-indigo-600 uppercase mb-2">
+                  이사 및 자문단
+                </p>
+                <p className="text-xs text-slate-500 mb-4">Board & Advisors</p>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  교육학자, AI 개발자, 현직 교사 등 각 분야의 리더들이 모여
+                  기술적 완성도와 교육적 윤리를 책임집니다.
+                </p>
+              </motion.div>
+
+              {/* 5-3. Team DawnStar */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="p-8 rounded-2xl subtle-glass-card"
+              >
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center mb-4">
+                  <Building2 className="w-6 h-6 text-white" />
+                </div>
+                <p className="text-sm font-medium tracking-widest text-indigo-600 uppercase mb-2">
+                  팀 새벽별
+                </p>
+                <p className="text-xs text-slate-500 mb-4">Team DawnStar</p>
+                <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                  개발자, 교육 기획자, 디자이너가 함께 만들어갑니다.
+                </p>
+                <p className="text-sm font-medium text-slate-900 italic">
+                  "아이들의 교육의 미래를 설계합니다."
+                </p>
+              </motion.div>
+
+              {/* 5-4. Partners */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="p-8 rounded-2xl subtle-glass-card"
+              >
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center mb-4">
+                  <Handshake className="w-6 h-6 text-white" />
+                </div>
+                <p className="text-sm font-medium tracking-widest text-indigo-600 uppercase mb-2">
+                  파트너
+                </p>
+                <p className="text-xs text-slate-500 mb-4">Partners</p>
+                <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                  새벽별의 여정에 함께하는 기관과 기업들입니다.
+                </p>
+                <p className="text-xs text-slate-400 italic">
+                  파트너 로고 영역 (추후 업데이트)
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================
+            CTA Section
+            ========================================= */}
         <section className="py-24">
           <div className="container-apple">
             <motion.div

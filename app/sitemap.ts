@@ -10,11 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/about/story',
     '/about/manifesto',
     '/about/commitments',
-    '/work',
-    '/work/saetbyeol',
-    '/work/students',
-    '/work/teachers',
-    '/work/parents',
     '/get-involved',
   ].map((route) => ({
     url: `${baseUrl}${route}`,

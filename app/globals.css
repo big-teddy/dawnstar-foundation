@@ -331,6 +331,28 @@
 }
 
 /* ========================================
+   NARRATIVE HIGHLIGHT REVEAL ANIMATION
+   "Aha!" moment effect for key quotes
+   ======================================== */
+
+@keyframes highlight-reveal {
+  0% {
+    background-color: transparent;
+  }
+
+  100% {
+    background-color: rgba(238, 242, 255, 0.8);
+    /* indigo-50/80 */
+  }
+}
+
+.animate-highlight-reveal {
+  animation: highlight-reveal 0.6s ease-out 1s forwards;
+  background-color: transparent;
+  /* Start transparent */
+}
+
+/* ========================================
    PREMIUM GRADIENT UTILITIES
    ======================================== */
 

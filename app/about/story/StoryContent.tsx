@@ -5,12 +5,14 @@ import Link from 'next/link';
 import { ArrowRight, Quote, X, Globe, Zap, Sparkles, icons } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import { allMembers, founder, boardMembers, teamMembers, partners, TeamMember } from './story.data';
+import { NarrativeSection } from './NarrativeVariants';
+import { LegacySection } from './LegacySection';
 
 // ============================================
 // ANIMATION VARIANTS
 // ============================================
 
-const fadeInUp = {
+const fadeInUp: any = {
     hidden: { opacity: 0, y: 30 },
     visible: {
         opacity: 1,
@@ -99,6 +101,69 @@ function PartnerCard({ member }: { member: TeamMember }) {
     );
 }
 
+
+function JourneyClassic() {
+    return (
+        <section className="py-32 sm:py-40 bg-white border-t border-slate-100">
+            <div className="max-w-7xl mx-auto px-6 sm:px-12">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+
+                    {/* LEFT: Sticky Headline */}
+                    <motion.div
+                        className="lg:col-span-5 lg:sticky lg:top-32"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true, margin: "-10% 0px" }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                    >
+                        <SectionLabelLeft>NARRATIVE</SectionLabelLeft>
+                        <h2 className="text-3xl sm:text-4xl xl:text-5xl font-black text-slate-900 break-keep tracking-tight leading-tight">
+                            교육은 아이들의<br />
+                            <span className="gradient-text bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-violet-600">
+                                잠재력을 이끌어내는
+                            </span><br />
+                            과정입니다
+                        </h2>
+                    </motion.div>
+
+                    {/* RIGHT: Content Stream */}
+                    <div className="lg:col-span-7 space-y-12 lg:space-y-16">
+
+                        {/* Block 1: The Origin Journey */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-10% 0px" }}
+                            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+                        >
+                            <p className="text-lg sm:text-xl leading-relaxed text-slate-600 break-keep">
+                                초등학교 5학년, 저는 학교를 떠나 한국의 1세대 홈스쿨러가 되었습니다. 이후 미국에서 대학 생활을 하며 한국의 공교육과 대안 교육, 그리고 글로벌 교육의 현장을 두루 경험하며 배움이 가진 다양한 이면을 깊이 있게 마주했습니다.
+                            </p>
+                        </motion.div>
+
+                        {/* Block 2: The Revelation */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-10% 0px" }}
+                            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                        >
+                            <p className="text-lg sm:text-xl leading-relaxed text-slate-600 break-keep">
+                                서로 다른 교육 환경의 경계를 넘나들며 제가 확인한 본질은 단 하나였습니다.{' '}
+                                <strong className="text-slate-900 font-bold">
+                                    교육은 아이 안의 잠재력을 세상으로 이끌어내고 실현하도록 돕는 가장 순수한 과정이어야 한다는 것.
+                                </strong>{' '}
+                                교육은 결코 경쟁의 도구나 사회적 지위를 얻기 위한 수단이 되어서는 안 됩니다.
+                            </p>
+                        </motion.div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    )
+}
 
 // ============================================
 // MAIN CLIENT COMPONENT
@@ -194,44 +259,11 @@ export default function StoryContent() {
                 </section>
 
                 {/* =========================================
-             2. JOURNEY (Left - Readable)
+             2. NARRATIVE SECTION (Fullscreen Pin - Final)
              ========================================= */}
-                <section className="py-32 sm:py-40 px-6">
-                    <div className="max-w-4xl mx-auto relative">
-                        <motion.article
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, margin: '-10% 0px' }}
-                            className="space-y-16"
-                        >
-                            <div className="group">
-                                <SectionLabelLeft>JOURNEY</SectionLabelLeft>
-                                <motion.h2 variants={fadeInUp} className={SECTION_TITLE_CLASS}>
-                                    교육은 아이들의 잠재력을<br />
-                                    <span className="text-indigo-600">이끌어내는 과정</span>
-                                </motion.h2>
-                                <div className="space-y-6">
-                                    <motion.p variants={fadeInUp} className={BODY_TEXT_CLASS}>
-                                        초등학교 5학년, 저는 학교를 떠나 한국의 1세대 홈스쿨러가 되었습니다. 이후 미국에서 대학 생활을 하며 한국의 공교육과 대안 교육, 그리고 글로벌 교육의 현장을 두루 경험하며 배움이 가진 다양한 이면을 깊이 있게 마주했습니다.
-                                    </motion.p>
-                                    <motion.p variants={fadeInUp} className={BODY_TEXT_CLASS}>
-                                        서로 다른 교육 환경의 경계를 넘나들며 제가 확인한 본질은 단 하나였습니다.
-                                    </motion.p>
-                                </div>
-                            </div>
 
-                            <motion.div variants={fadeInUp} className={`relative ${GLASS_BOX_CLASS}`}>
-                                <Quote className="w-8 h-8 text-indigo-400/80 mb-4" />
-                                <p className="text-xl sm:text-2xl font-bold text-slate-900 leading-relaxed word-keep mb-4">
-                                    "교육은 아이 안의 잠재력을 세상으로 이끌어내고 실현하도록 돕는 가장 순수한 과정이어야 한다는 것."
-                                </p>
-                                <p className="text-base text-slate-500 font-medium word-keep">
-                                    교육은 결코 경쟁의 도구나 사회적 지위를 얻기 위한 수단이 되어서는 안 됩니다.
-                                </p>
-                            </motion.div>
-                        </motion.article>
-                    </div>
-                </section>
+                <NarrativeSection />
+
 
                 {/* =========================================
              3. INSIGHT (PINNED SCROLLYTELLING)
@@ -295,32 +327,9 @@ export default function StoryContent() {
                 </section>
 
                 {/* =========================================
-             4. LEGACY (Center Aligned - Impact)
+             4. LEGACY (Cinematic - Impact)
              ========================================= */}
-                <section className="py-32 sm:py-40 px-6">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, margin: '-10% 0px' }}
-                            variants={fadeInUp}
-                        >
-                            <SectionLabelCenter>LEGACY</SectionLabelCenter>
-                            <h2 className={SECTION_TITLE_CLASS}>
-                                우리가 미래 세대에게 물려줄<br />
-                                <span className="gradient-text bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-violet-600">
-                                    진정한 유산
-                                </span>
-                            </h2>
-                            <p className={`${BODY_TEXT_CLASS} mx-auto`}>
-                                아이들이 환경에 구애받지 않고 각자의 잠재력대로 살아갈 수 있는 세상.<br className="hidden sm:block" />
-                                진정한 교육의 목적과 본질이 실현되는 그것이 <br className="hidden sm:block" />
-                                우리가 다음 세대에게 주고싶은 유산이자,<br className="hidden sm:block" />
-                                <span className="text-slate-900 font-bold">새벽별파운데이션이 존재하는 이유입니다.</span>
-                            </p>
-                        </motion.div>
-                    </div>
-                </section>
+                <LegacySection />
 
                 {/* =========================================
              5. OUR PEOPLE (Center Grid)
@@ -455,7 +464,10 @@ export default function StoryContent() {
     );
 }
 
+
+
 // Sub-component for Fixed Stream Item
+
 function InsightFixedItem({ text, isActive }: { text: React.ReactNode, isActive: boolean }) {
     return (
         <div className="py-2 transition-all duration-200 ease-in-out">
@@ -467,3 +479,5 @@ function InsightFixedItem({ text, isActive }: { text: React.ReactNode, isActive:
         </div>
     )
 }
+
+

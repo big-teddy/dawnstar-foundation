@@ -137,7 +137,7 @@ function JourneyClassic() {
                             transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
                         >
                             <p className="text-lg sm:text-xl leading-relaxed text-slate-600 break-keep">
-                                초등학교 5학년, 저는 학교를 떠나 한국의 1세대 홈스쿨러가 되었습니다. 이후 미국에서 대학 생활을 하며 한국의 공교육과 대안 교육, 그리고 글로벌 교육의 현장을 두루 경험하며 배움이 가진 다양한 이면을 깊이 있게 마주했습니다.
+                                초등학교 5학년, 저는 학교를 떠나 한국의 1세대 홈스쿨러가 되었습니다. 이후 미국에서 대학 생활을 하며 한국의 공교육과 한국 1세대 홈스쿨러, 그리고 글로벌 교육의 현장을 두루 경험하며 배움이 가진 다양한 이면을 깊이 있게 마주했습니다.
                             </p>
                         </motion.div>
 

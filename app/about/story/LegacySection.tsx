@@ -125,7 +125,7 @@ export function LegacySection() {
                         animate={stage >= 2 ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6 }}
                     >
-                        아이들이 환경에 구애받지 않고 각자의 잠재력대로 살아갈 수 있는 세상.
+                        진정한 교육의 목적과 본질이 실현되는 세상.
                     </motion.p>
 
                     <motion.p
@@ -134,16 +134,7 @@ export function LegacySection() {
                         animate={stage >= 2 ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        진정한 교육의 목적과 본질이 실현되는 그것이
-                    </motion.p>
-
-                    <motion.p
-                        className="text-lg sm:text-xl text-slate-300 leading-relaxed break-keep"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={stage >= 2 ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                    >
-                        우리가 다음 세대에게 주고싶은 유산이자,
+                        그것이 우리가 다음 세대에게 주고 싶은 유산이자,
                     </motion.p>
                 </div>
 
@@ -160,7 +151,7 @@ export function LegacySection() {
                     {/* 메인 텍스트 박스 */}
                     <div className="relative bg-slate-800/40 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/30">
                         <p className="text-xl sm:text-2xl xl:text-3xl font-bold leading-relaxed break-keep">
-                            {'새벽별파운데이션이 존재하는 이유입니다.'.split('').map((char, i) => (
+                            {'새벽별 파운데이션이 존재하는 이유입니다.'.split('').map((char, i) => (
                                 <motion.span
                                     key={i}
                                     className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400"
